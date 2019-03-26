@@ -61,18 +61,7 @@ console.log(maximoValor(edades));
 console.log("Punto 5:");
 
 function obtenerDatoPosicion(array,b){
-  var devolverDato=0;
-  isTrue = new Boolean(false);
-  var i = 0;
-  while(i < array.length && isTrue == false){
-    if(i == b) {
-      console.log(i);
-      devolverDato = array[i];
-      isTrue = true;
-    }
-    i++;
-  }
-  return devolverDato;
+  return array[b];
 }
 
 var datos = [3,6,67,6,23,11,100,8,93,0,17,24,7,1,33,45,28,33,23,12,99,100];
