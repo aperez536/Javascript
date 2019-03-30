@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Senado</title>
+    <!-- Bootstrap CSS -->
+         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link  rel="stylesheet" href="estiloTabla.css" type="text/css">
+
+    </head>
+    <body>
+         
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script id= "ajax" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <table id="datos_del_senado"> 
+            <script src = "pro-congress-115-senate.js"></script>
+
+        </table>
+
+       <script>
+        // <button onclick ="algo()"> Imprimir datos </button> va en el body esto
+        //document.getElementById("datos_del_senado").innerHTML = JSON.stringify(senate, null, 2);
+        //informacion obenida se convierte en objecto json
+        var objectSenate = JSON.parse(JSON.stringify(senate));
+        var resultado = document.getElementById("datos_del_senado");
+        var nombreCompleto;
+        var name = "Name";
+        var party = "Party";
+        var state = "State";
+        var seniority = "Years in Office";
+        var votes = "% votes w/ parte";
+        document.write(
+        );
+        for(var i = 0 ; i< objectSenate.length;i++){
+            if(objectSenate[i].middle_name != null){
+                nombreCompleto =objectSenate[i].last_name+ " "+objectSenate[i].middle_name+" "+objectSenate[i].first_name
+            }
+            else{
+                nombreCompleto =objectSenate[i].last_name+ " "+objectSenate[i].first_name
+             
+            }
+ 
+         document.write(
+             "<table>"+
+            "<tr>"
+            +"<th>"+name +"</th>"
+            +"<th>"+party +"</th>"
+            +"<th>"+state +"</th>"
+            +"<th>"+ seniority +"</th>"
+            +"<Th>"+votes +"</th>"
+            +"</tr>"+
+            "<tr>"
+            +"<br>"
+            +"<td id='separar'>"+ nombreCompleto  +"</td>"
+            +"<td>"+ objectSenate[i].party +"</td>"
+            +"<td>"+ objectSenate[i].state +"</td>"
+            +"<td>"+ objectSenate[i].seniority +"</td>"
+            +"<td>"+objectSenate[i].votes_with_party_pct+"</td>"
+            +"</tr>"
+            +"</table>"
+         );
+        }
+
+    </script>
+    </body>
+</html>
