@@ -1,6 +1,5 @@
 var senate =[
-  
-              {   
+              {
                  "id": "A000360",
                  "title": "Senator, 2nd Class",
                  "short_title": "Sen.",
@@ -2606,7 +2605,7 @@ var senate =[
                  "dw_nominate": null,
                  "ideal_point": null,
                  "seniority": "1",
-                 
+
                  "total_votes": 72,
                  "missed_votes": 1,
                  "total_present": 0,
@@ -4831,5 +4830,3 @@ var senate =[
                  "votes_with_party_pct": 96.97
                }
    ]
-
-

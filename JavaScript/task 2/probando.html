@@ -6,21 +6,70 @@
     <!-- Bootstrap CSS -->
          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-         
+
     </head>
     <body>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-        <script id="1" src = "pro-congress-115-senate.js">
-        
+        <script id= "ajax" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
 
-        
         </script>
+        <script id="datos_del_senado" src = "pro-congress-115-senate.js"></script>
         <script>
-         console.log(document.getElementById("1").innerHTML = JSON.stringify(senate,null,2));
+        //document.getElementById("datos_del_senado").innerHTML = JSON.stringify(senate, null, 2);
+        //informacion obenida se convierte en objecto json
+        var objectSenate = JSON.parse(JSON.stringify(senate));
+        var resultado = document.getElementById("datos_del_senado");
+        console.log(resultado.innerHTML = JSON.stringify(senate, null, 2)) ;
+        document.write(resultado.innerHTML = JSON.stringify(senate, null, 2));
+        /*
+        for(var i = 0 ; i< objectSenate.length;i++){
+         document.write(resultado.innerHTML = objectSenate[i].id+" " +
+                                              objectSenate[i].title+ " "+
+                                              objectSenate[i].short_title+" "+
+                                              objectSenate[i].api_uri+" "+
+                                              objectSenate[i].first_name+" "+
+                                              objectSenate[i].middle_name+" "+
+                                              objectSenate[i].last_name+" "+
+                                              objectSenate[i].suffix+" "+
+                                              objectSenate[i].date_of_birth+" "+
+                                              objectSenate[i].gender+" "+
+                                              objectSenate[i].party+" "+
+                                              objectSenate[i].leadership_role+ " "+
+                                              objectSenate[i].twitter_account+" "+
+                                              objectSenate[i].twitter_account+" "+
+                                              objectSenate[i].youtube_account+" "+
+                                              objectSenate[i].govtrack_id+" "+
+                                              objectSenate[i].cspan_id+" "+
+                                              objectSenate[i].votesmart_id+" "+
+                                              objectSenate[i].icpsr_id+" "+
+                                              objectSenate[i].google_entity_id+" "+
+                                              objectSenate[i].fec_candidate_id+" "+
+                                              objectSenate[i].url+" "+
+                                              objectSenate[i].rss_url+" "+
+                                              objectSenate[i].contact_form+" "+
+                                              objectSenate[i].in_office+" "+
+                                              objectSenate[i].dw_nominate+" "+
+                                              objectSenate[i].ideal_point+" "+
+                                              objectSenate[i].seniority+" "+
+                                              objectSenate[i].next_election+" "+
+                                              objectSenate[i].total_votes+" "+
+                                              objectSenate[i].missed_votes+" "+
+                                              objectSenate[i].total_present+" "+
+                                              objectSenate[i].last_updated+" "+
+                                              objectSenate[i].ocd_id+" "+
+                                              objectSenate[i].office+" "+
+                                              objectSenate[i].phone+" "+
+                                              objectSenate[i].fax+" "+
+                                              objectSenate[i].state+" "+
+                                              objectSenate[i].senate_class+" "+
+                                              objectSenate[i].state_rank+" "+
+                                              objectSenate[i].lis_id+" "+
+                                              objectSenate[i].missed_votes_pct+" "+
+                                              objectSenate[i].votes_with_party_pct+ "<br>"
+                                            );
+        }
+        */
         </script>
-      
-
     </body>
 </html>
