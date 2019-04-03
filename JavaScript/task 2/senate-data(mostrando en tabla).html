@@ -27,7 +27,7 @@
         var objectSenate = JSON.parse(JSON.stringify(senate));
         var resultado = document.getElementById("datos_del_senado");
         var nombreCompleto;
-
+        var direccion;
         $("#Table").append('<tr><th>Name</th>'+
         '<th>Party</th>'+'<th>State</th>'+'<th>Years in Office</th>'+'<th>% votes w/ parte</th></tr>');
           console.log(" aca toy");
@@ -40,7 +40,7 @@
             }
 
           $("#Table").append('<tr>'+
-          '<td>'+nombreCompleto+'</td>'+
+          '<td>'+'<a href=objectSenate[i].url>' +nombreCompleto+'</a>'+'</td>'+
           '<td>'+objectSenate[i].party+'</td>'+
           '<td>'+objectSenate[i].state+'</td>'+
           '<td>'+objectSenate[i].seniority+'</td>'+
