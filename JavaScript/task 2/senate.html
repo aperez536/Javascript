@@ -7,35 +7,73 @@
     <title>TGIF LOGO</title>
     <link  rel="stylesheet" href="formato-texto.css" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link  rel="stylesheet" href="estiloTabla.css" type="text/css">
   </head>
   <body style="font-family:Comic Sans MS;">
-    <header>
-      <div class d-block>
-      <div class="d-inline">
-        <img src="imagen/imagen3.png" width="40" height="70" >
-        <span >TGIF</span>
-        <span class="align-bottom"> Logo   </span>
-        <div class="float-right">
-          <img class="img-responsive" src="imagen/imagen1.png" width="50" height="30" >
-          <span><a style="text-decoration:underline  "href="mailto:info@tgif.net?subject=Reaching%20Out&body=How%20are%20you"> info@tgif.net</a></span>
-        </div>
-      </div>
-      </div>
-    </header>
-      <nav class="nav px-4">
-        <a class="nav-link active" href="senate-home.html">Home</a>
-        <a class="nav-link" data-toggle= "dropdown" href="#">Congress</a>
-          <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">House</a></li>
-            <li><a href="#">Senate</a></li>
-          </ul>
-      </nav>
-
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <header>
+      <div class="row">
+        <div class="col">
+          <div class="d-inline">
+            <img  class="img-responsive" src="imagen/imagen3.png" width="40" height="70" >
+            <span >TGIF</span>
+            <span class="align-bottom"> Logo   </span>
+          </div>
+        </div>
+          <div class="col">
+            <div class="float-right">
+              <img class="img-responsive" src="imagen/imagen1.png" width="50" height="30" >
+              <span><a style="text-decoration:underline  "href="mailto:info@tgif.net?subject=Reaching%20Out&body=How%20are%20you"> info@tgif.net</a></span>
+            </div>
+          </div>
+        </div>
+    </header>
+
+    <nav class="nav px-4">
+      <a class="nav-link active" href="senate-home.html">Home</a>
+      <a class="nav-link" data-toggle= "dropdown" href="#">Congress</a>
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">House</a></li>
+          <li><a href="#">Senate</a></li>
+        </ul>
+    </nav>
+    <table id="datos_del_senado">
+        <script src = "pro-congress-115-senate.js"></script>
+          <table id="Table"> </table>
+    </table>
+    <script>
+     // <button onclick ="algo()"> Imprimir datos </button> va en el body esto
+     //document.getElementById("datos_del_senado").innerHTML = JSON.stringify(senate, null, 2);
+     //informacion obenida se convierte en objecto json
+
+       var objectSenate = JSON.parse(JSON.stringify(senate));
+       var resultado = document.getElementById("datos_del_senado");
+       var nombreCompleto;
+
+       $("#Table").append('<tr><th>Name</th>'+
+       '<th>Party</th>'+'<th>State</th>'+'<th>Years in Office</th>'+'<th>% votes w/ parte</th></tr>');
+         console.log(" aca toy");
+       for(var i = 0 ; i< objectSenate.length;i++){
+           if(objectSenate[i].middle_name != null){
+               nombreCompleto =objectSenate[i].last_name+ " "+objectSenate[i].middle_name+" "+objectSenate[i].first_name
+           }
+           else{
+               nombreCompleto =objectSenate[i].last_name+ " "+objectSenate[i].first_name
+           }
+          console.log(objectSenate[i].url);
+         $("#Table").append('<tr>'+
+         '<td>'+'<a href=objectSenate[i].url>' +nombreCompleto+'</a>'+'</td>'+
+         '<td>'+objectSenate[i].party+'</td>'+
+         '<td>'+objectSenate[i].state+'</td>'+
+         '<td>'+objectSenate[i].seniority+'</td>'+
+         '<td>'+objectSenate[i].votes_with_party_pct+
+         '</td>'+'</tr>');
+       }
+
+     </script>
   </body>
 </html>
