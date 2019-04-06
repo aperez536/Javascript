@@ -37,8 +37,8 @@
       <a class="nav-link" data-toggle= "dropdown" href="#">Congress</a>
         <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="senate.html">House</a></li>
-          <li><a href="house.html">Senate</a></li>
+          <li><a href="house.html">House</a></li>
+          <li><a href="senate.html">Senate</a></li>
         </ul>
     </nav>
     <section>
@@ -46,14 +46,17 @@
         <div class="text-secondary">
         <br>
         <h2>Congressmen </h2>
-          <p>First convened in 1789, the composition and powers of the Senate are established in Article One of the U.S. Constitution. Each state is represented by two senators, regardless of population, who serve staggered six-year terms. The Senate has several exclusive powers not granted to the House, including consenting to treaties as a precondition to their ratification and consenting to or confirming appointments of Cabinet secretaries, federal judges, other federal executive officials, military officers, regulatory officials, ambassadors, and other federal uniformed officers, as well as trial of federal officials impeached by the House.</p>
+        <p>First convened in 1789, the composition and powers of the Senate are established in Article One of the U.S. Constitution. Each state is represented by two senators, regardless of population, who serve staggered six-year terms. The Senate has several exclusive powers not granted to the House, including consenting to treaties as a precondition to their ratification and consenting to or confirming appointments of Cabinet secretaries, federal judges, other federal executive officials, military officers, regulatory officials, ambassadors, and other federal uniformed officers, as well as trial of federal officials impeached by the House.</p>
+        Filter by Party:
+        <input type="checkbox" id="Republican" <label for="cbox2">Republican</label>
+        <input type="checkbox" id="Democrat" > <label for="cbox2">Democrat</label>
+        <input type="checkbox" id="Independent"> <label for="cbox2">Independent</label>
 
         <table id="datos_del_house">
             <script src = "pro-congress-115-house.js"></script>
-            <div class="col-xl-auto">
               <table id="Table"> </table>
         </table>
-        </div>
+
       </article>
     </section>
 
@@ -62,6 +65,12 @@
      //document.getElementById("datos_del_senado").innerHTML = JSON.stringify(senate, null, 2);
      //informacion obenida se convierte en objecto json
 
+     //funciones para filtrados
+      function myFunction() {
+        var x = document.getElementById("myCheck").checked;
+        document.getElementById("demo").innerHTML = x;
+      }
+     //
        var objectSenate = JSON.parse(JSON.stringify(house));
        var resultado = document.getElementById("datos_del_house");
        var nombreCompleto;
