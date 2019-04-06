@@ -1,8 +1,9 @@
 th{
-text-indent: 30px;
+text-indent:50px;
 }
 td{
-  text-indent: 30px;
+  text-indent: 50px;
+  border: 1px solid black;
 }
 a{
   text-decoration: underline;
