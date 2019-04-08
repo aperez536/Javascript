@@ -48,9 +48,9 @@
         <h2>Congressmen </h2>
         <p>First convened in 1789, the composition and powers of the Senate are established in Article One of the U.S. Constitution. Each state is represented by two senators, regardless of population, who serve staggered six-year terms. The Senate has several exclusive powers not granted to the House, including consenting to treaties as a precondition to their ratification and consenting to or confirming appointments of Cabinet secretaries, federal judges, other federal executive officials, military officers, regulatory officials, ambassadors, and other federal uniformed officers, as well as trial of federal officials impeached by the House.</p>
         Filter by Party:
-        <input type="checkbox" id="Republican" <label for="cbox2">Republican</label>
-        <input type="checkbox" id="Democrat" > <label for="cbox2">Democrat</label>
-        <input type="checkbox" id="Independent"> <label for="cbox2">Independent</label>
+        <input type="checkbox" id="Republican" value="R" autocomplete="off" > <label for="cbox2">Republican</label>
+        <input type="checkbox" id="Democrat" value="D" autocomplete="off"> <label for="cbox2">Democrat</label>
+        <input type="checkbox" id="Independent" value="I"  autocomplete="off"> <label for="cbox2">Independent</label>
 
         <table id="datos_del_house">
             <script src = "pro-congress-115-house.js"></script>
@@ -64,37 +64,92 @@
      // <button onclick ="algo()"> Imprimir datos </button> va en el body esto
      //document.getElementById("datos_del_senado").innerHTML = JSON.stringify(senate, null, 2);
      //informacion obenida se convierte en objecto json
+      //guardo variable para checkbox
 
-     //funciones para filtrados
-      function myFunction() {
-        var x = document.getElementById("myCheck").checked;
-        document.getElementById("demo").innerHTML = x;
-      }
-     //
-       var objectSenate = JSON.parse(JSON.stringify(house));
-       var resultado = document.getElementById("datos_del_house");
-       var nombreCompleto;
-
-       $("#Table").append('<tr><th>Name</th>'+
-       '<th>Party</th>'+'<th>State</th>'+'<th>Years in Office</th>'+'<th>% votes w/ parte</th></tr>');
-         console.log(" aca toy");
-       for(var i = 0 ; i< objectSenate.length;i++){
-           if(objectSenate[i].middle_name != null){
-               nombreCompleto =objectSenate[i].last_name+ " "+objectSenate[i].middle_name+" "+objectSenate[i].first_name
+      ///
+      var objectSenate = JSON.parse(JSON.stringify(house));
+      var resultado = document.getElementById("datos_del_house");
+      var nombreCompleto;
+      var checkbox = document.getElementById('Republican');
+      var checkbox2 = document.getElementById('Democrat');
+      var checkbox3= document.getElementById('Independent');
+      checkbox.addEventListener("change", validaCheckbox, false);
+      checkbox2.addEventListener("change", validaCheckbox2, false);
+      checkbox3.addEventListener("change", validaCheckbox3, false);
+      $("#Table").append('<tr><th>Name</th>'+
+      '<th>Party</th>'+'<th>State</th>'+'<th>Years in Office</th>'+'<th>% votes w/ parte</th></tr>');
+      function validaCheckbox(){
+         var checked = checkbox.checked;
+         var result;
+         if(checked){
+           result = document.getElementById('Republican').value;
+           for(var i = 0 ; i< objectSenate.length;i++){
+             if(objectSenate[i].party === result){
+               if(objectSenate[i].middle_name != null){
+                   nombreCompleto =objectSenate[i].last_name+ " "+objectSenate[i].middle_name+" "+objectSenate[i].first_name
+               }
+               else{
+                   nombreCompleto =objectSenate[i].last_name+ " "+objectSenate[i].first_name
+               }
+             $("#Table").append('<tr>'+
+             '<td>'+'<a href=objectSenate[i].url>' +nombreCompleto+'</a>'+'</td>'+
+             '<td>'+objectSenate[i].party+'</td>'+
+             '<td>'+objectSenate[i].state+'</td>'+
+             '<td>'+objectSenate[i].seniority+'</td>'+
+             '<td>'+objectSenate[i].votes_with_party_pct+
+             '</td>'+'</tr>');
            }
-           else{
-               nombreCompleto =objectSenate[i].last_name+ " "+objectSenate[i].first_name
-           }
-          console.log(objectSenate[i].url);
-         $("#Table").append('<tr>'+
-         '<td>'+'<a href=objectSenate[i].url>' +nombreCompleto+'</a>'+'</td>'+
-         '<td>'+objectSenate[i].party+'</td>'+
-         '<td>'+objectSenate[i].state+'</td>'+
-         '<td>'+objectSenate[i].seniority+'</td>'+
-         '<td>'+objectSenate[i].votes_with_party_pct+
-         '</td>'+'</tr>');
+         }
+         }
        }
-
+       function validaCheckbox2(){
+          var checked = checkbox2.checked;
+          var result;
+          if(checked){
+            result = document.getElementById('Democrat').value;
+            for(var i = 0 ; i< objectSenate.length;i++){
+              if(objectSenate[i].party === result){
+                if(objectSenate[i].middle_name != null){
+                    nombreCompleto =objectSenate[i].last_name+ " "+objectSenate[i].middle_name+" "+objectSenate[i].first_name
+                }
+                else{
+                    nombreCompleto =objectSenate[i].last_name+ " "+objectSenate[i].first_name
+                }
+              $("#Table").append('<tr>'+
+              '<td>'+'<a href=objectSenate[i].url>' +nombreCompleto+'</a>'+'</td>'+
+              '<td>'+objectSenate[i].party+'</td>'+
+              '<td>'+objectSenate[i].state+'</td>'+
+              '<td>'+objectSenate[i].seniority+'</td>'+
+              '<td>'+objectSenate[i].votes_with_party_pct+
+              '</td>'+'</tr>');
+            }
+          }
+          }
+        }
+        function validaCheckbox3(){
+           var checked = checkbox3.checked;
+             var result;
+           if(checked){
+             result = document.getElementById('Independent').value;
+             for(var i = 0 ; i< objectSenate.length;i++){
+               if(objectSenate[i].party === result){
+                 if(objectSenate[i].middle_name != null){
+                     nombreCompleto =objectSenate[i].last_name+ " "+objectSenate[i].middle_name+" "+objectSenate[i].first_name
+                 }
+                 else{
+                     nombreCompleto =objectSenate[i].last_name+ " "+objectSenate[i].first_name
+                 }
+               $("#Table").append('<tr>'+
+               '<td>'+'<a href=objectSenate[i].url>' +nombreCompleto+'</a>'+'</td>'+
+               '<td>'+objectSenate[i].party+'</td>'+
+               '<td>'+objectSenate[i].state+'</td>'+
+               '<td>'+objectSenate[i].seniority+'</td>'+
+               '<td>'+objectSenate[i].votes_with_party_pct+
+               '</td>'+'</tr>');
+             }
+           }
+           }
+         }
      </script>
   </body>
 </html>
