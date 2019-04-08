@@ -37,8 +37,8 @@
       <a class="nav-link" data-toggle= "dropdown" href="#">Congress 115</a>
         <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="house.html">House</a></li>
-          <li><a href="senate.html">Senate</a></li>
+          <li id='n' onMouseOver=mouseOver() onMouseOut=mouseOut()><a style="text-decoration:none"href="house.html">House</a></li>
+          <li id='b' onMouseOver=mouseOver2() onMouseOut=mouseOut2()><a style="text-decoration:none" href="senate.html">Senate</a></li>
         </ul>
     </nav>
     <section>
@@ -69,25 +69,134 @@
        var objectSenate = JSON.parse(JSON.stringify(senate));
        var resultado = document.getElementById("datos_del_senado");
        var nombreCompleto;
-
+       var checkbox = document.getElementById('Republican');
+       var checkbox2 = document.getElementById('Democrat');
+       var checkbox3= document.getElementById('Independent');
+       checkbox.addEventListener("change", validaCheckbox, false);
+       checkbox2.addEventListener("change", validaCheckbox2, false);
+       checkbox3.addEventListener("change", validaCheckbox3, false);
        $("#Table").append('<tr><th>Name</th>'+
        '<th>Party</th>'+'<th>State</th>'+'<th>Years in Office</th>'+'<th>% votes w/ parte</th></tr>');
-       for(var i = 0 ; i< objectSenate.length;i++){
-           if(objectSenate[i].middle_name != null){
-               nombreCompleto =objectSenate[i].last_name+ " "+objectSenate[i].middle_name+" "+objectSenate[i].first_name
+       function validaCheckbox(){
+
+          var checked = checkbox.checked;
+          var result;
+          if(checked){
+            result = document.getElementById('Republican').value;
+            for(var i = 0 ; i< objectSenate.length;i++){
+              if(objectSenate[i].party === result){
+                if(objectSenate[i].middle_name != null){
+                    nombreCompleto =objectSenate[i].last_name+ " "+objectSenate[i].middle_name+" "+objectSenate[i].first_name
+                }
+                else{
+                    nombreCompleto =objectSenate[i].last_name+ " "+objectSenate[i].first_name
+                }
+              $("#Table").append('<tr>'+
+              '<td>'+'<a href=objectSenate[i].url>' +nombreCompleto+'</a>'+'</td>'+
+              '<td>'+objectSenate[i].party+'</td>'+
+              '<td>'+objectSenate[i].state+'</td>'+
+              '<td>'+objectSenate[i].seniority+'</td>'+
+              '<td>'+objectSenate[i].votes_with_party_pct+
+              '</td>'+'</tr>');
+            }
+          }
+          }
+          else{
+            document.location.href = document.location.href;
+         }
+
+        }
+
+        function validaCheckbox2(){
+
+           var checked = checkbox2.checked;
+           var result;
+           if(checked){
+             result = document.getElementById('Democrat').value;
+             for(var i = 0 ; i< objectSenate.length;i++){
+               if(objectSenate[i].party === result){
+                 if(objectSenate[i].middle_name != null){
+                     nombreCompleto =objectSenate[i].last_name+ " "+objectSenate[i].middle_name+" "+objectSenate[i].first_name
+                 }
+                 else{
+                     nombreCompleto =objectSenate[i].last_name+ " "+objectSenate[i].first_name
+                 }
+               $("#Table").append('<tr>'+
+               '<td>'+'<a href=objectSenate[i].url>' +nombreCompleto+'</a>'+'</td>'+
+               '<td>'+objectSenate[i].party+'</td>'+
+               '<td>'+objectSenate[i].state+'</td>'+
+               '<td>'+objectSenate[i].seniority+'</td>'+
+               '<td>'+objectSenate[i].votes_with_party_pct+
+               '</td>'+'</tr>');
+             }
+           }
            }
            else{
-               nombreCompleto =objectSenate[i].last_name+ " "+objectSenate[i].first_name
-           }
-          console.log(objectSenate[i].url);
-         $("#Table").append('<tr>'+
-         '<td>'+'<a href=objectSenate[i].url>' +nombreCompleto+'</a>'+'</td>'+
-         '<td>'+objectSenate[i].party+'</td>'+
-         '<td>'+objectSenate[i].state+'</td>'+
-         '<td>'+objectSenate[i].seniority+'</td>'+
-         '<td>'+objectSenate[i].votes_with_party_pct+
-         '</td>'+'</tr>');
-       }
+             document.location.href = document.location.href;
+         }
+
+         }
+         function validaCheckbox3(){
+            var checked = checkbox3.checked;
+              var result;
+            if(checked){
+              result = document.getElementById('Independent').value;
+              for(var i = 0 ; i< objectSenate.length;i++){
+                if(objectSenate[i].party === result){
+                  if(objectSenate[i].middle_name != null){
+                      nombreCompleto =objectSenate[i].last_name+ " "+objectSenate[i].middle_name+" "+objectSenate[i].first_name
+                  }
+                  else{
+                      nombreCompleto =objectSenate[i].last_name+ " "+objectSenate[i].first_name
+                  }
+                $("#Table").append('<tr>'+
+                '<td>'+'<a href=objectSenate[i].url>' +nombreCompleto+'</a>'+'</td>'+
+                '<td>'+objectSenate[i].party+'</td>'+
+                '<td>'+objectSenate[i].state+'</td>'+
+                '<td>'+objectSenate[i].seniority+'</td>'+
+                '<td>'+objectSenate[i].votes_with_party_pct+
+                '</td>'+'</tr>');
+              }
+            }
+            }
+            else{
+              document.location.href = document.location.href;
+          }
+
+          }
+          function mostrarTablaCompelta(){
+          for(var i = 0 ; i< objectSenate.length;i++){
+              if(objectSenate[i].middle_name != null){
+                  nombreCompleto =objectSenate[i].last_name+ " "+objectSenate[i].middle_name+" "+objectSenate[i].first_name
+              }
+              else{
+                  nombreCompleto =objectSenate[i].last_name+ " "+objectSenate[i].first_name
+              }
+            $("#Table").append('<tr>'+
+            '<td>'+'<a href=objectSenate[i].url>' +nombreCompleto+'</a>'+'</td>'+
+            '<td>'+objectSenate[i].party+'</td>'+
+            '<td>'+objectSenate[i].state+'</td>'+
+            '<td>'+objectSenate[i].seniority+'</td>'+
+            '<td>'+objectSenate[i].votes_with_party_pct+
+            '</td>'+'</tr>');
+          }
+
+        }
+         mostrarTablaCompelta();
+
+         function mouseOver() {
+           document.getElementById("n").style.backgroundColor = "#E1E1E1";
+         }
+
+         function mouseOut() {
+           document.getElementById("n").style.backgroundColor = "#FFFFFF";
+         }
+         function mouseOver2() {
+         document.getElementById("b").style.backgroundColor = "#E1E1E1";
+         }
+         function mouseOut2() {
+           document.getElementById("b").style.backgroundColor = "#FFFFFF";
+         }
 
      </script>
   </body>
