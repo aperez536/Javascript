@@ -34,7 +34,7 @@
 
     <nav class="nav px-4">
       <a class="nav-link active" href="senate-home.html">Home</a>
-      <a class="nav-link" data-toggle= "dropdown" href="#">Congress 115</a>
+      <a class="nav-link" data-toggle= "dropdown" href="#">Congress 113</a>
         <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li id='n' onMouseOver=mouseOver() onMouseOut=mouseOut()><a style="text-decoration:none" href="house.html">House</a></li>
@@ -79,12 +79,14 @@
       checkbox.addEventListener("change", validaCheckbox, false);
       checkbox2.addEventListener("change", validaCheckbox2, false);
       checkbox3.addEventListener("change", validaCheckbox3, false);
+      function titulo(){
       $("#Table").append('<tr><th>Name</th>'+
       '<th>Party</th>'+'<th>State</th>'+'<th>Years in Office</th>'+'<th>% votes w/ parte</th></tr>');
+      }
       function validaCheckbox(){
-
+        $("#Table").empty();
+        titulo();
          var checked = checkbox.checked;
-         var result;
          if(checked){
            result = document.getElementById('Republican').value;
            for(var i = 0 ; i< objectSenate.length;i++){
@@ -96,7 +98,7 @@
                    nombreCompleto =objectSenate[i].last_name+ " "+objectSenate[i].first_name
                }
              $("#Table").append('<tr>'+
-             '<td>'+'<a href=objectSenate[i].url>' +nombreCompleto+'</a>'+'</td>'+
+            '<td>'+'<a href='+objectSenate[i].url+'>' +nombreCompleto+'</a>'+'</td>'+
              '<td>'+objectSenate[i].party+'</td>'+
              '<td>'+objectSenate[i].state+'</td>'+
              '<td>'+objectSenate[i].seniority+'</td>'+
@@ -108,13 +110,14 @@
          else{
            document.location.href = document.location.href;
         }
-
+        
        }
 
        function validaCheckbox2(){
-
+        $("#Table").empty();
+        titulo();
           var checked = checkbox2.checked;
-          var result;
+        
           if(checked){
             result = document.getElementById('Democrat').value;
             for(var i = 0 ; i< objectSenate.length;i++){
@@ -126,7 +129,7 @@
                     nombreCompleto =objectSenate[i].last_name+ " "+objectSenate[i].first_name
                 }
               $("#Table").append('<tr>'+
-              '<td>'+'<a href=objectSenate[i].url>' +nombreCompleto+'</a>'+'</td>'+
+              '<td>'+'<a href='+objectSenate[i].url+'>' +nombreCompleto+'</a>'+'</td>'+
               '<td>'+objectSenate[i].party+'</td>'+
               '<td>'+objectSenate[i].state+'</td>'+
               '<td>'+objectSenate[i].seniority+'</td>'+
@@ -138,11 +141,16 @@
           else{
             document.location.href = document.location.href;
         }
-
+        
         }
         function validaCheckbox3(){
+          // borra la tabla
+          $("#Table").empty();
+
+          //
+          titulo();
            var checked = checkbox3.checked;
-             var result;
+           
            if(checked){
              result = document.getElementById('Independent').value;
              for(var i = 0 ; i< objectSenate.length;i++){
@@ -154,7 +162,7 @@
                      nombreCompleto =objectSenate[i].last_name+ " "+objectSenate[i].first_name
                  }
                $("#Table").append('<tr>'+
-               '<td>'+'<a href=objectSenate[i].url>' +nombreCompleto+'</a>'+'</td>'+
+                '<td>'+'<a href='+objectSenate[i].url+'>' +nombreCompleto+'</a>'+'</td>'+
                '<td>'+objectSenate[i].party+'</td>'+
                '<td>'+objectSenate[i].state+'</td>'+
                '<td>'+objectSenate[i].seniority+'</td>'+
@@ -169,7 +177,8 @@
 
          }
          function mostrarTablaCompelta(){
-         for(var i = 0 ; i< objectSenate.length;i++){
+          titulo();
+          for(var i = 0 ; i< objectSenate.length;i++){
              if(objectSenate[i].middle_name != null){
                  nombreCompleto =objectSenate[i].last_name+ " "+objectSenate[i].middle_name+" "+objectSenate[i].first_name
              }
@@ -177,7 +186,7 @@
                  nombreCompleto =objectSenate[i].last_name+ " "+objectSenate[i].first_name
              }
            $("#Table").append('<tr>'+
-           '<td>'+'<a href=objectSenate[i].url>' +nombreCompleto+'</a>'+'</td>'+
+           '<td>'+'<a href='+objectSenate[i].url+'>' +nombreCompleto+'</a>'+'</td>'+
            '<td>'+objectSenate[i].party+'</td>'+
            '<td>'+objectSenate[i].state+'</td>'+
            '<td>'+objectSenate[i].seniority+'</td>'+
