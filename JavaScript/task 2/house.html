@@ -51,7 +51,67 @@
         <input type="checkbox" id="Republican" value="R"  > <label for="cbox2">Republican</label>
         <input type="checkbox" id="Democrat" value="D" > <label for="cbox2">Democrat</label>
         <input type="checkbox" id="Independent" value="I" > <label for="cbox2">Independent</label>
-
+        <div class="clearfix"></div>
+        Filty by State:
+        <select id="estado" onchange="filterState()">
+            <option value="vacio"></option>
+            <option value="LA">LA</option>
+            <option value="NC">NC</option>
+            <option value="AL">AL</option>
+            <option value="CA">CA</option>
+            <option value="GA">GA</option>
+            <option value="MI">MI</option>
+            <option value="NV">NV</option>
+            <option value="TX">TX</option>
+            <option value="NE">NE</option>
+            <option value="OH">OH</option>
+            <option value="IN">IN</option>
+            <option value="PA">PA</option>
+            <option value="KY">KY</option>
+            <option value="VA">VA</option>
+            <option value="AZ">AZ</option>
+            <option value="FL">FL</option>
+            <option value="UT">UT</option>
+            <option value="TN">TN</option>
+            <option value="IA">IA</option>
+            <option value="OR">OR</option>
+            <option value="DE">DE</option>
+            <option value="GU">GU</option>
+            <option value="IL">IL</option>
+            <option value="OK">OK</option>
+            <option value="MD">MD</option>
+            <option value="CO">CO</option>
+            <option value="MA">MA</option>
+            <option value="WY">WY</option>
+            <option value="RI">RI</option>
+            <option value="NY">NY</option>
+            <option value="MO">MO</option>
+            <option value="SC">SC</option>
+            <option value="CT">CT</option>
+            <option value="ND">ND</option>
+            <option value="AR">AR</option>
+            <option value="WA">WA</option>
+            <option value="WI">WI</option>
+            <option value="MN">MN</option>
+            <option value="KS">KS</option>
+            <option value="NJ">NJ</option>
+            <option value="HI">HI</option>
+            <option value="MT">MT</option>
+            <option value="PR">PR</option>
+            <option value="MS">MS</option>
+            <option value="WV">WV</option>
+            <option value="NH">NH</option>
+            <option value="ID">ID</option>
+            <option value="NM">NM</option>
+            <option value="SD">SD</option>
+            <option value="DC">DC</option>
+            <option value="ME">ME</option>
+            <option value="VI">VI</option>
+            <option value="AS">AS</option>
+            <option value="MP">MP</option>
+            <option value="VT">VT</option>
+            <option value="AK">AK</option>
+        </select>
         <table id="datos_del_house">
             <script src = "pro-congress-115-house.js"></script>
               <table id="Table"> </table>
@@ -67,9 +127,8 @@
       //guardo variable para checkbox
 
       ///
-      var arraytotal = [];
-
-        var objectSenate = JSON.parse(JSON.stringify(house));
+        var arraytotal = [];
+        var objectHouse = JSON.parse(JSON.stringify(house));
         var resultado = document.getElementById("datos_del_senado");
         var nombreCompleto;
         var checkbox = document.getElementById('Republican');
@@ -127,22 +186,22 @@
         }
         function cargarDatosEnObjeto(result){
 
-         for(var i = 0 ; i< objectSenate.length; i++){
-              if(objectSenate[i].party === result){
+         for(var i = 0 ; i< objectHouse.length; i++){
+              if(objectHouse[i].party === result){
                 var p = new Persona();
-                if(objectSenate[i].middle_name != null){
-                    p.nombre =objectSenate[i].last_name+ " "+objectSenate[i].middle_name+" "+objectSenate[i].first_name;
+                if(objectHouse[i].middle_name != null){
+                    p.nombre =objectHouse[i].last_name+ " "+objectHouse[i].middle_name+" "+objectHouse[i].first_name;
                 }
                 else{
-                    p.nombre =objectSenate[i].last_name+ " "+objectSenate[i].first_name;
+                    p.nombre =objectHouse[i].last_name+ " "+objectHouse[i].first_name;
                 }
-               p.idPersona = objectSenate[i].id;
-               p.url = objectSenate[i].url;
-               p.party = objectSenate[i].party;
-               p.state = objectSenate[i].state;
-               p.seniority = objectSenate[i].seniority;
-               p.votes_with_party_pct = objectSenate[i].votes_with_party_pct;
-               if(validarPersona( objectSenate[i].id) == false){
+               p.idPersona = objectHouse[i].id;
+               p.url = objectHouse[i].url;
+               p.party = objectHouse[i].party;
+               p.state = objectHouse[i].state;
+               p.seniority = objectHouse[i].seniority;
+               p.votes_with_party_pct = objectHouse[i].votes_with_party_pct;
+               if(validarPersona( objectHouse[i].id) == false){
                    arraytotal.push(p);
                }
             }
@@ -338,19 +397,19 @@
           function mostrarTablaCompleta(){
            $("#Table").empty();
            titulo();
-           for(var i = 0 ; i< objectSenate.length;i++){
-              if(objectSenate[i].middle_name != null){
-                  nombreCompleto =objectSenate[i].last_name+ " "+objectSenate[i].middle_name+" "+objectSenate[i].first_name
+           for(var i = 0 ; i< objectHouse.length;i++){
+              if(objectHouse[i].middle_name != null){
+                  nombreCompleto =objectHouse[i].last_name+ " "+objectHouse[i].middle_name+" "+objectHouse[i].first_name
               }
               else{
-                  nombreCompleto =objectSenate[i].last_name+ " "+objectSenate[i].first_name
+                  nombreCompleto =objectHouse[i].last_name+ " "+objectHouse[i].first_name
               }
             $("#Table").append('<tr>'+
-            '<td>'+'<a href='+objectSenate[i].url+'>' +nombreCompleto+'</a>'+'</td>'+
-            '<td>'+objectSenate[i].party+'</td>'+
-            '<td>'+objectSenate[i].state+'</td>'+
-            '<td>'+objectSenate[i].seniority+'</td>'+
-            '<td>'+objectSenate[i].votes_with_party_pct+
+            '<td>'+'<a href='+objectHouse[i].url+'>' +nombreCompleto+'</a>'+'</td>'+
+            '<td>'+objectHouse[i].party+'</td>'+
+            '<td>'+objectHouse[i].state+'</td>'+
+            '<td>'+objectHouse[i].seniority+'</td>'+
+            '<td>'+objectHouse[i].votes_with_party_pct+
             '</td>'+'</tr>');
           }
 
@@ -370,6 +429,28 @@
          function mouseOut2() {
            document.getElementById("b").style.backgroundColor = "#FFFFFF";
          }
+         function filterState(){
+           $("#Table").empty();
+           titulo();
+           var x = document.getElementById("estado").value;
+           for(var i = 0 ; i< objectHouse.length;i++){
+             if(objectHouse[i].state == x ){
+             if(objectHouse[i].middle_name != null){
+               nombreCompleto =objectHouse[i].last_name+ " "+objectHouse[i].middle_name+" "+objectHouse[i].first_name;
+             }
+             else{
+                 nombreCompleto=objectHouse[i].last_name+ " "+objectHouse[i].first_name;
+             }
+              $("#Table").append('<tr>'+
+              '<td>'+'<a href='+objectHouse[i].url+'>' +nombreCompleto+'</a>'+'</td>'+
+              '<td>'+objectHouse[i].party+'</td>'+
+              '<td>'+objectHouse[i].state+'</td>'+
+              '<td>'+objectHouse[i].seniority+'</td>'+
+              '<td>'+objectHouse[i].votes_with_party_pct+
+              '</td>'+'</tr>');
+          }
+        }
+        }
 
      </script>
   </body>
