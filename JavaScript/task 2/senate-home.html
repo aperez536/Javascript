@@ -33,8 +33,8 @@
       <a class="nav-link" data-toggle= "dropdown" href="#">Congress 115</a>
         <span class="caret"></span>
         <ul class="dropdown-menu">
-          <li><a href="house.html">House</a></li>
-          <li><a href="senate.html">Senate</a></li>
+          <li  id='n' onMouseOver=mouseOver() onMouseOut=mouseOut() ><a href="house.html">House</a></li>
+          <li  id='b' onMouseOver=mouseOver2() onMouseOut=mouseOut2()><a href="senate.html">Senate</a></li>
         </ul>
     </nav>
     <section>
@@ -72,9 +72,24 @@
         </footer>
       </article>
     </section>
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+    function mouseOver() {
+      document.getElementById("n").style.backgroundColor = "#E1E1E1";
+    }
+
+    function mouseOut() {
+      document.getElementById("n").style.backgroundColor = "#FFFFFF";
+    }
+    function mouseOver2() {
+    document.getElementById("b").style.backgroundColor = "#E1E1E1";
+    }
+    function mouseOut2() {
+      document.getElementById("b").style.backgroundColor = "#FFFFFF";
+    }
+    </script>
   </body>
 </html>
