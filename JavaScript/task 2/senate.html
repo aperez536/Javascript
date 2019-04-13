@@ -56,7 +56,7 @@
           <div class="clearfix"></div>
           Filty by State:
           <select id="estado" onchange="filterState()">
-            <option value="all">all</option>
+            <option value="all">ALL</option>
             <option value="TN">TN</option>
             <option value="WI">WI</option>
             <option value="WY">WY</option>
@@ -279,23 +279,22 @@
         var checked = checkbox.checked;
 
         if(checked){
-          console.log(1);
           cargarDatosEnObjeto(result);
 
 
         if(checkbox2.checked == true && checkbox3.checked == true){
-          console.log(2);
+
            cargarDatosEnObjeto(result2);
            cargarDatosEnObjeto(result3);
            DatosTablaArrayTotal();
          }
          else if(checkbox2.checked == true && checkbox3.checked == false){
-           console.log(3);
+
             cargarDatosEnObjeto(result2);
             mostrartablaFiltro(result,result2);
          }
          else if(checkbox2.checked == false && checkbox3.checked == true){
-           console.log(4);
+
             cargarDatosEnObjeto(result3);
             mostrartablaFiltro(result,result3);
          }
@@ -305,24 +304,24 @@
        }
          else{
            if(checkbox2.checked == true && checkbox3.checked == true){
-             console.log(5);
+
               cargarDatosEnObjeto(result2);
               cargarDatosEnObjeto(result3);
               mostrartablaFiltro(result2,result3);
            }
            else if (checkbox2.checked == false && checkbox3.checked == true) {
-             console.log(6);
+
              cargarDatosEnObjeto(result3);
              mostrarTabla(result3);
            }
            else if (checkbox2.checked == true && checkbox3.checked == false) {
-             console.log(7);
+
              cargarDatosEnObjeto(result2);
              mostrarTabla(result2);
          }
           else{
-            console.log(8);
-           mostrarTablaCompleta();
+
+        //   mostrarTablaCompleta();
          }
       }
     }
@@ -336,21 +335,21 @@
           var result3 = document.getElementById('Independent').value;
           var objetoDemocrat = cargarDatosEnObjeto(result);
           if(checked){
-            console.log(9);
+
             cargarDatosEnObjeto(result);
           if(checkbox.checked == true && checkbox3.checked == true){
-            console.log(10);
+
              cargarDatosEnObjeto(result2);
              cargarDatosEnObjeto(result3);
              DatosTablaArrayTotal();
            }
            else if(checkbox.checked == true && checkbox3.checked == false){
-             console.log(11);
+
               cargarDatosEnObjeto(result2);
               mostrartablaFiltro(result,result2);
            }
            else if(checkbox.checked == false && checkbox3.checked == true){
-             console.log(12);
+
               cargarDatosEnObjeto(result3);
               mostrartablaFiltro(result,result3);
            }
@@ -360,23 +359,21 @@
          }
            else{
              if(checkbox.checked == true && checkbox3.checked == true){
-               console.log(13);
-            //    cargarDatosEnObjeto(result2);
-            //    cargarDatosEnObjeto(result3);
+
                 mostrartablaFiltro(result2,result3);
              }
              else if (checkbox.checked == false && checkbox3.checked == true) {
-               console.log(14);
+
                cargarDatosEnObjeto(result3);
                mostrarTabla(result3);
              }
              else if (checkbox.checked == true && checkbox3.checked == false) {
-               console.log(15);
+
                cargarDatosEnObjeto(result2);
                mostrarTabla(result2);
            }
            else{
-              mostrarTablaCompleta();
+            //  mostrarTablaCompleta();
            }
       }
     }
@@ -391,23 +388,15 @@
           var result3 = document.getElementById('Democrat').value;
           var result2 = document.getElementById('Republican').value;
           if(checked){
-            console.log(16);
             cargarDatosEnObjeto(result);
-          //  mostrarTabla(result);
-
           if(checkbox2.checked == true && checkbox.checked == true){
-            console.log(17);
-              //cargarDatosEnObjeto(result2);
-          //   cargarDatosEnObjeto(result3);
              DatosTablaArrayTotal();
            }
            else if(checkbox2.checked == true && checkbox.checked == false){
-             console.log(18);
               cargarDatosEnObjeto(result3);
               mostrartablaFiltro(result,result3);
            }
            else if(checkbox2.checked == false && checkbox.checked == true){
-             console.log(19);
               cargarDatosEnObjeto(result2);
               mostrartablaFiltro(result,result2);
            }
@@ -417,24 +406,21 @@
          }
            else{
              if(checkbox2.checked == true && checkbox.checked == true){
-               console.log(20);
                 cargarDatosEnObjeto(result2);
                 cargarDatosEnObjeto(result3);
                 mostrartablaFiltro(result2,result3);
              }
 
              else if (checkbox2.checked == false && checkbox.checked == true) {
-                console.log(21);
                cargarDatosEnObjeto(result2);
                mostrarTabla(result2);
              }
              else if (checkbox2.checked == true && checkbox.checked == false) {
-                console.log(22);
                cargarDatosEnObjeto(result3);
                mostrarTabla(result3);
            }
            else{
-             mostrarTablaCompleta();
+        //     mostrarTablaCompleta();
            }
         }
       }
@@ -459,7 +445,7 @@
          }
 
        }
-        mostrarTablaCompleta();
+
 
         function mouseOver() {
           document.getElementById("n").style.backgroundColor = "#E1E1E1";
