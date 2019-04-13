@@ -56,7 +56,7 @@
           <div class="clearfix"></div>
           Filty by State:
           <select id="estado" onchange="filterState()">
-            <option value="vacio"></option>
+            <option value="all">all</option>
             <option value="TN">TN</option>
             <option value="WI">WI</option>
             <option value="WY">WY</option>
@@ -123,9 +123,8 @@
      // <button onclick ="algo()"> Imprimir datos </button> va en el body esto
      //document.getElementById("datos_del_senado").innerHTML = JSON.stringify(senate, null, 2);
      //informacion obenida se convierte en objecto json
-
-      var arraytotal = [];
-      var filterByState = [];
+       var arraytotal = [];
+       var filterByState = [];
        var objectSenate = JSON.parse(JSON.stringify(senate));
        var resultado = document.getElementById("datos_del_senado");
        var nombreCompleto;
@@ -156,8 +155,23 @@
          return bandera;
        }
        function mostrartablaFiltro(filtro,filtro2){
+         x = document.getElementById("estado").value;
+         if(x =='all'){
+           for(var i = 0 ; i< arraytotal.length;i++){
+              if(arraytotal[i].party === filtro || arraytotal[i].party === filtro2 ){
+                  $("#Table").append('<tr>'+
+                 '<td>'+'<a href='+arraytotal[i].url+'>' +arraytotal[i].nombre+'</a>'+'</td>'+
+                  '<td>'+arraytotal[i].party+'</td>'+
+                  '<td>'+arraytotal[i].state+'</td>'+
+                  '<td>'+arraytotal[i].seniority+'</td>'+
+                  '<td>'+arraytotal[i].votes_with_party_pct+
+                  '</td>'+'</tr>');
+                }
+              }
+         }
+         else{
          for(var i = 0 ; i< arraytotal.length;i++){
-            if(arraytotal[i].party === filtro || arraytotal[i].party === filtro2 ){
+            if( (arraytotal[i].party === filtro || arraytotal[i].party === filtro2) && arraytotal[i].state == x ){
                 $("#Table").append('<tr>'+
                '<td>'+'<a href='+arraytotal[i].url+'>' +arraytotal[i].nombre+'</a>'+'</td>'+
                 '<td>'+arraytotal[i].party+'</td>'+
@@ -167,11 +181,28 @@
                 '</td>'+'</tr>');
               }
             }
+          }
        }
 
        function mostrarTabla(filtro){
+         x = document.getElementById("estado").value;
+
+         if(x == 'all'){
+           for(var i = 0 ; i< arraytotal.length;i++){
+              if(arraytotal[i].party ==filtro ){
+                  $("#Table").append('<tr>'+
+                 '<td>'+'<a href='+arraytotal[i].url+'>' +arraytotal[i].nombre+'</a>'+'</td>'+
+                  '<td>'+arraytotal[i].party+'</td>'+
+                  '<td>'+arraytotal[i].state+'</td>'+
+                  '<td>'+arraytotal[i].seniority+'</td>'+
+                  '<td>'+arraytotal[i].votes_with_party_pct+
+                  '</td>'+'</tr>');
+                }
+              }
+         }
+         else{
          for(var i = 0 ; i< arraytotal.length;i++){
-            if(arraytotal[i].party ==filtro ){
+            if(arraytotal[i].party ==filtro && arraytotal[i].state == x ){
                 $("#Table").append('<tr>'+
                '<td>'+'<a href='+arraytotal[i].url+'>' +arraytotal[i].nombre+'</a>'+'</td>'+
                 '<td>'+arraytotal[i].party+'</td>'+
@@ -181,6 +212,7 @@
                 '</td>'+'</tr>');
               }
             }
+          }
        }
        function cargarDatosEnObjeto(result){
 
@@ -212,17 +244,32 @@
       }
 
       function DatosTablaArrayTotal(){
+        x = document.getElementById("estado").value;
+        if(x == 'all'){
+          for(var i = 0 ; i< arraytotal.length;i++){
+         $("#Table").append('<tr>'+
+        '<td>'+'<a href='+arraytotal[i].url+'>' +arraytotal[i].nombre+'</a>'+'</td>'+
+         '<td>'+arraytotal[i].party+'</td>'+
+         '<td>'+arraytotal[i].state+'</td>'+
+         '<td>'+arraytotal[i].seniority+'</td>'+
+         '<td>'+arraytotal[i].votes_with_party_pct+
+         '</td>'+'</tr>');
+       }
+        }
+        else{
          for(var i = 0 ; i< arraytotal.length;i++){
-        $("#Table").append('<tr>'+
-       '<td>'+'<a href='+arraytotal[i].url+'>' +arraytotal[i].nombre+'</a>'+'</td>'+
-        '<td>'+arraytotal[i].party+'</td>'+
-        '<td>'+arraytotal[i].state+'</td>'+
-        '<td>'+arraytotal[i].seniority+'</td>'+
-        '<td>'+arraytotal[i].votes_with_party_pct+
-        '</td>'+'</tr>');
+           if(arraytotal[i].state == x){
+            $("#Table").append('<tr>'+
+           '<td>'+'<a href='+arraytotal[i].url+'>' +arraytotal[i].nombre+'</a>'+'</td>'+
+            '<td>'+arraytotal[i].party+'</td>'+
+            '<td>'+arraytotal[i].state+'</td>'+
+            '<td>'+arraytotal[i].seniority+'</td>'+
+            '<td>'+arraytotal[i].votes_with_party_pct+
+            '</td>'+'</tr>');
+          }
       }
       }
-
+    }
       function validaCheckbox(){
         $("#Table").empty();
         titulo();
@@ -429,26 +476,9 @@
         }
 
         function filterState(){
-          $("#Table").empty();
-          titulo();
-          var x = document.getElementById("estado").value;
-          for(var i = 0 ; i< objectSenate.length;i++){
-            if(objectSenate[i].state == x ){
-            if(objectSenate[i].middle_name != null){
-              nombreCompleto =objectSenate[i].last_name+ " "+objectSenate[i].middle_name+" "+objectSenate[i].first_name;
-            }
-            else{
-                nombreCompleto=objectSenate[i].last_name+ " "+objectSenate[i].first_name;
-            }
-             $("#Table").append('<tr>'+
-             '<td>'+'<a href='+objectSenate[i].url+'>' +nombreCompleto+'</a>'+'</td>'+
-             '<td>'+objectSenate[i].party+'</td>'+
-             '<td>'+objectSenate[i].state+'</td>'+
-             '<td>'+objectSenate[i].seniority+'</td>'+
-             '<td>'+objectSenate[i].votes_with_party_pct+
-             '</td>'+'</tr>');
-         }
-       }
+         validaCheckbox();
+         validaCheckbox2();
+         validaCheckbox3();
        }
      </script>
   </body>
