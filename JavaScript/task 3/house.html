@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>TGIF LOGO</title>
+    <link  rel="stylesheet" href="formato-texto.css" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link  rel="stylesheet" href="estiloTabla.css" type="text/css">
+  </head>
+  <body style="font-family:Comic Sans MS;">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <header>
+      <div class="row">
+      <div class="col">
+      <div class="d-inline">
+        <img  class="img-responsive" src="imagen/imagen3.png" width="40" height="70" >
+        <span >TGIF</span>
+        <span class="align-bottom"> Logo   </span>
+      </div>
+      </div>
+      <div class="col">
+        <div class="float-right">
+          <img class="img-responsive" src="imagen/imagen1.png" width="50" height="30" >
+          <span><a style="text-decoration:underline  "href="mailto:info@tgif.net?subject=Reaching%20Out&body=How%20are%20you"> info@tgif.net</a></span>
+      </div>
+    </div>
+        </div>
+    </header>
+
+    <nav class="nav px-4">
+      <a class="nav-link active" href="senate-home.html">Home</a>
+      <a class="nav-link" data-toggle= "dropdown" href="#">Congress 113</a>
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li id='n' onMouseOver=mouseOver() onMouseOut=mouseOut()><a style="text-decoration:none" href="house.html">House</a></li>
+          <li id='b' onMouseOver=mouseOver2() onMouseOut=mouseOut2()><a style="text-decoration:none"  href="senate.html">Senate</a></li>
+        </ul>
+    </nav>
+    <section>
+      <article>
+        <div class="text-secondary">
+        <br>
+        <h2>Congressmen </h2>
+        <p>First convened in 1789, the composition and powers of the Senate are established in Article One of the U.S. Constitution. Each state is represented by two senators, regardless of population, who serve staggered six-year terms. The Senate has several exclusive powers not granted to the House, including consenting to treaties as a precondition to their ratification and consenting to or confirming appointments of Cabinet secretaries, federal judges, other federal executive officials, military officers, regulatory officials, ambassadors, and other federal uniformed officers, as well as trial of federal officials impeached by the House.</p>
+        Filter by Party:
+        <input type="checkbox" id="Republican" value="R"  > <label for="cbox2">Republican</label>
+        <input type="checkbox" id="Democrat" value="D" > <label for="cbox2">Democrat</label>
+        <input type="checkbox" id="Independent" value="I" > <label for="cbox2">Independent</label>
+        <div class="clearfix"></div>
+        Filty by State:
+        <select id="estado" onchange="filterState()">
+            <option value="all">ALL</option>
+            <option value="LA">LA</option>
+            <option value="NC">NC</option>
+            <option value="AL">AL</option>
+            <option value="CA">CA</option>
+            <option value="GA">GA</option>
+            <option value="MI">MI</option>
+            <option value="NV">NV</option>
+            <option value="TX">TX</option>
+            <option value="NE">NE</option>
+            <option value="OH">OH</option>
+            <option value="IN">IN</option>
+            <option value="PA">PA</option>
+            <option value="KY">KY</option>
+            <option value="VA">VA</option>
+            <option value="AZ">AZ</option>
+            <option value="FL">FL</option>
+            <option value="UT">UT</option>
+            <option value="TN">TN</option>
+            <option value="IA">IA</option>
+            <option value="OR">OR</option>
+            <option value="DE">DE</option>
+            <option value="GU">GU</option>
+            <option value="IL">IL</option>
+            <option value="OK">OK</option>
+            <option value="MD">MD</option>
+            <option value="CO">CO</option>
+            <option value="MA">MA</option>
+            <option value="WY">WY</option>
+            <option value="RI">RI</option>
+            <option value="NY">NY</option>
+            <option value="MO">MO</option>
+            <option value="SC">SC</option>
+            <option value="CT">CT</option>
+            <option value="ND">ND</option>
+            <option value="AR">AR</option>
+            <option value="WA">WA</option>
+            <option value="WI">WI</option>
+            <option value="MN">MN</option>
+            <option value="KS">KS</option>
+            <option value="NJ">NJ</option>
+            <option value="HI">HI</option>
+            <option value="MT">MT</option>
+            <option value="PR">PR</option>
+            <option value="MS">MS</option>
+            <option value="WV">WV</option>
+            <option value="NH">NH</option>
+            <option value="ID">ID</option>
+            <option value="NM">NM</option>
+            <option value="SD">SD</option>
+            <option value="DC">DC</option>
+            <option value="ME">ME</option>
+            <option value="VI">VI</option>
+            <option value="AS">AS</option>
+            <option value="MP">MP</option>
+            <option value="VT">VT</option>
+            <option value="AK">AK</option>
+        </select>
+        <table id="datos_del_house">
+            <script src = "pro-congress-115-house.js"></script>
+              <table id="Table"> </table>
+        </table>
+
+      </article>
+    </section>
+
+    <script>
+     // <button onclick ="algo()"> Imprimir datos </button> va en el body esto
+     //document.getElementById("datos_del_senado").innerHTML = JSON.stringify(senate, null, 2);
+     //informacion obenida se convierte en objecto json
+      //guardo variable para checkbox
+
+      ///
+        var arraytotal = [];
+        var objectHouse = JSON.parse(JSON.stringify(house));
+        var resultado = document.getElementById("datos_del_senado");
+        var nombreCompleto;
+        var checkbox = document.getElementById('Republican');
+        var checkbox2 = document.getElementById('Democrat');
+        var checkbox3= document.getElementById('Independent');
+        checkbox.addEventListener("change", validaCheckbox, false);
+        checkbox2.addEventListener("change", validaCheckbox2, false);
+        checkbox3.addEventListener("change", validaCheckbox3, false);
+        function Persona(id,nombre,url,party,state,seniority,votes_with_party_pct){
+           this.idPersona = id;
+           this.nombre = nombre;
+           this.url = url;
+           this.party = party;
+           this.state = state;
+           this.seniority = seniority;
+           this.votes_with_party_pct = votes_with_party_pct;
+        }
+        function validarPersona(id){
+          var bandera = false;
+          var i = 0;
+          while (i < arraytotal.length){
+            if(arraytotal[i].idPersona == id){
+              bandera = true;
+            }
+            i= i+1;
+          }
+          return bandera;
+        }
+        function mostrartablaFiltro(filtro,filtro2){
+          x = document.getElementById("estado").value;
+          if(x =='all'){
+            for(var i = 0 ; i< arraytotal.length;i++){
+               if(arraytotal[i].party === filtro || arraytotal[i].party === filtro2 ){
+                   $("#Table").append('<tr>'+
+                  '<td>'+'<a href='+arraytotal[i].url+'>' +arraytotal[i].nombre+'</a>'+'</td>'+
+                   '<td>'+arraytotal[i].party+'</td>'+
+                   '<td>'+arraytotal[i].state+'</td>'+
+                   '<td>'+arraytotal[i].seniority+'</td>'+
+                   '<td>'+arraytotal[i].votes_with_party_pct+
+                   '</td>'+'</tr>');
+                 }
+               }
+          }
+          else{
+          for(var i = 0 ; i< arraytotal.length;i++){
+             if( (arraytotal[i].party === filtro || arraytotal[i].party === filtro2) && arraytotal[i].state == x ){
+                 $("#Table").append('<tr>'+
+                '<td>'+'<a href='+arraytotal[i].url+'>' +arraytotal[i].nombre+'</a>'+'</td>'+
+                 '<td>'+arraytotal[i].party+'</td>'+
+                 '<td>'+arraytotal[i].state+'</td>'+
+                 '<td>'+arraytotal[i].seniority+'</td>'+
+                 '<td>'+arraytotal[i].votes_with_party_pct+
+                 '</td>'+'</tr>');
+               }
+             }
+           }
+        }
+
+        function mostrarTabla(filtro){
+          x = document.getElementById("estado").value;
+
+          if(x == 'all'){
+            for(var i = 0 ; i< arraytotal.length;i++){
+               if(arraytotal[i].party ==filtro ){
+                   $("#Table").append('<tr>'+
+                  '<td>'+'<a href='+arraytotal[i].url+'>' +arraytotal[i].nombre+'</a>'+'</td>'+
+                   '<td>'+arraytotal[i].party+'</td>'+
+                   '<td>'+arraytotal[i].state+'</td>'+
+                   '<td>'+arraytotal[i].seniority+'</td>'+
+                   '<td>'+arraytotal[i].votes_with_party_pct+
+                   '</td>'+'</tr>');
+                 }
+               }
+          }
+          else{
+          for(var i = 0 ; i< arraytotal.length;i++){
+             if(arraytotal[i].party ==filtro && arraytotal[i].state == x ){
+                 $("#Table").append('<tr>'+
+                '<td>'+'<a href='+arraytotal[i].url+'>' +arraytotal[i].nombre+'</a>'+'</td>'+
+                 '<td>'+arraytotal[i].party+'</td>'+
+                 '<td>'+arraytotal[i].state+'</td>'+
+                 '<td>'+arraytotal[i].seniority+'</td>'+
+                 '<td>'+arraytotal[i].votes_with_party_pct+
+                 '</td>'+'</tr>');
+               }
+             }
+           }
+        }
+        function cargarDatosEnObjeto(result){
+
+         for(var i = 0 ; i< objectHouse.length; i++){
+              if(objectHouse[i].party === result){
+                var p = new Persona();
+                if(objectHouse[i].middle_name != null){
+                    p.nombre =objectHouse[i].last_name+ " "+objectHouse[i].middle_name+" "+objectHouse[i].first_name;
+                }
+                else{
+                    p.nombre =objectHouse[i].last_name+ " "+objectHouse[i].first_name;
+                }
+               p.idPersona = objectHouse[i].id;
+               p.url = objectHouse[i].url;
+               p.party = objectHouse[i].party;
+               p.state = objectHouse[i].state;
+               p.seniority = objectHouse[i].seniority;
+               p.votes_with_party_pct = objectHouse[i].votes_with_party_pct;
+               if(validarPersona( objectHouse[i].id) == false){
+                   arraytotal.push(p);
+               }
+            }
+          }
+        }
+
+        function titulo(){
+       $("#Table").append('<tr><th>Name</th>'+
+       '<th>Party</th>'+'<th>State</th>'+'<th>Years in Office</th>'+'<th>% votes w/ parte</th></tr>');
+       }
+
+       function DatosTablaArrayTotal(){
+         x = document.getElementById("estado").value;
+         if(x == 'all'){
+           for(var i = 0 ; i< arraytotal.length;i++){
+          $("#Table").append('<tr>'+
+         '<td>'+'<a href='+arraytotal[i].url+'>' +arraytotal[i].nombre+'</a>'+'</td>'+
+          '<td>'+arraytotal[i].party+'</td>'+
+          '<td>'+arraytotal[i].state+'</td>'+
+          '<td>'+arraytotal[i].seniority+'</td>'+
+          '<td>'+arraytotal[i].votes_with_party_pct+
+          '</td>'+'</tr>');
+        }
+         }
+         else{
+          for(var i = 0 ; i< arraytotal.length;i++){
+            if(arraytotal[i].state == x){
+             $("#Table").append('<tr>'+
+            '<td>'+'<a href='+arraytotal[i].url+'>' +arraytotal[i].nombre+'</a>'+'</td>'+
+             '<td>'+arraytotal[i].party+'</td>'+
+             '<td>'+arraytotal[i].state+'</td>'+
+             '<td>'+arraytotal[i].seniority+'</td>'+
+             '<td>'+arraytotal[i].votes_with_party_pct+
+             '</td>'+'</tr>');
+           }
+       }
+       }
+     }
+
+       function validaCheckbox(){
+         $("#Table").empty();
+         titulo();
+         var result = document.getElementById('Republican').value;
+         var result2 = document.getElementById('Democrat').value;
+         var result3 = document.getElementById('Independent').value;
+         var checked = checkbox.checked;
+
+         if(checked){
+           cargarDatosEnObjeto(result);
+         if(checkbox2.checked == true && checkbox3.checked == true){
+            cargarDatosEnObjeto(result2);
+            cargarDatosEnObjeto(result3);
+            DatosTablaArrayTotal();
+          }
+          else if(checkbox2.checked == true && checkbox3.checked == false){
+             cargarDatosEnObjeto(result2);
+             mostrartablaFiltro(result,result2);
+          }
+          else if(checkbox2.checked == false && checkbox3.checked == true){
+             cargarDatosEnObjeto(result3);
+             mostrartablaFiltro(result,result3);
+          }
+          else{
+             mostrarTabla(result);
+          }
+        }
+          else{
+            if(checkbox2.checked == true && checkbox3.checked == true){
+               cargarDatosEnObjeto(result2);
+               cargarDatosEnObjeto(result3);
+               mostrartablaFiltro(result2,result3);
+            }
+            else if (checkbox2.checked == false && checkbox3.checked == true) {
+              cargarDatosEnObjeto(result3);
+              mostrarTabla(result3);
+            }
+            else if (checkbox2.checked == true && checkbox3.checked == false) {
+              cargarDatosEnObjeto(result2);
+              mostrarTabla(result2);
+          }
+           else{
+        //    mostrarTablaCompleta();
+          }
+       }
+     }
+
+         function validaCheckbox2(){
+           $("#Table").empty();
+           titulo();
+           var checked = checkbox2.checked;
+           var result = document.getElementById('Democrat').value;
+           var result2 = document.getElementById('Republican').value;
+           var result3 = document.getElementById('Independent').value;
+           var objetoDemocrat = cargarDatosEnObjeto(result);
+           if(checked){
+             cargarDatosEnObjeto(result);
+           if(checkbox.checked == true && checkbox3.checked == true){
+              cargarDatosEnObjeto(result2);
+              cargarDatosEnObjeto(result3);
+              DatosTablaArrayTotal();
+            }
+            else if(checkbox.checked == true && checkbox3.checked == false){
+               cargarDatosEnObjeto(result2);
+               mostrartablaFiltro(result,result2);
+            }
+            else if(checkbox.checked == false && checkbox3.checked == true){
+               cargarDatosEnObjeto(result3);
+               mostrartablaFiltro(result,result3);
+            }
+            else{
+              mostrarTabla(result);
+            }
+          }
+            else{
+              if(checkbox.checked == true && checkbox3.checked == true){
+             //    cargarDatosEnObjeto(result2);
+             //    cargarDatosEnObjeto(result3);
+                 mostrartablaFiltro(result2,result3);
+              }
+              else if (checkbox.checked == false && checkbox3.checked == true) {
+                cargarDatosEnObjeto(result3);
+                mostrarTabla(result3);
+              }
+              else if (checkbox.checked == true && checkbox3.checked == false) {
+                cargarDatosEnObjeto(result2);
+                mostrarTabla(result2);
+            }
+            else{
+            //   mostrarTablaCompleta();
+            }
+       }
+     }
+
+         function validaCheckbox3(){
+           // borra la tabla
+           $("#Table").empty();
+           //
+           titulo();
+           var checked = checkbox3.checked;
+           var result = document.getElementById('Independent').value;
+           var result3 = document.getElementById('Democrat').value;
+           var result2 = document.getElementById('Republican').value;
+           if(checked){
+             cargarDatosEnObjeto(result);
+
+
+           if(checkbox2.checked == true && checkbox.checked == true){
+              DatosTablaArrayTotal();
+            }
+            else if(checkbox2.checked == true && checkbox.checked == false){
+               cargarDatosEnObjeto(result3);
+               mostrartablaFiltro(result,result3);
+            }
+            else if(checkbox2.checked == false && checkbox.checked == true){
+               cargarDatosEnObjeto(result2);
+               mostrartablaFiltro(result,result2);
+            }
+            else{
+              mostrarTabla(result);
+            }
+          }
+            else{
+              if(checkbox2.checked == true && checkbox.checked == true){
+                 cargarDatosEnObjeto(result2);
+                 cargarDatosEnObjeto(result3);
+                 mostrartablaFiltro(result2,result3);
+              }
+
+              else if (checkbox2.checked == false && checkbox.checked == true) {
+                cargarDatosEnObjeto(result2);
+                mostrarTabla(result2);
+              }
+              else if (checkbox2.checked == true && checkbox.checked == false) {
+                cargarDatosEnObjeto(result3);
+                mostrarTabla(result3);
+            }
+            else{
+              //mostrarTablaCompleta();
+            }
+         }
+       }
+
+          function mostrarTablaCompleta(){
+           $("#Table").empty();
+           titulo();
+           for(var i = 0 ; i< objectHouse.length;i++){
+              if(objectHouse[i].middle_name != null){
+                  nombreCompleto =objectHouse[i].last_name+ " "+objectHouse[i].middle_name+" "+objectHouse[i].first_name
+              }
+              else{
+                  nombreCompleto =objectHouse[i].last_name+ " "+objectHouse[i].first_name
+              }
+            $("#Table").append('<tr>'+
+            '<td>'+'<a href='+objectHouse[i].url+'>' +nombreCompleto+'</a>'+'</td>'+
+            '<td>'+objectHouse[i].party+'</td>'+
+            '<td>'+objectHouse[i].state+'</td>'+
+            '<td>'+objectHouse[i].seniority+'</td>'+
+            '<td>'+objectHouse[i].votes_with_party_pct+
+            '</td>'+'</tr>');
+          }
+
+        }
+
+
+         function mouseOver() {
+           document.getElementById("n").style.backgroundColor = "#E1E1E1";
+         }
+
+         function mouseOut() {
+           document.getElementById("n").style.backgroundColor = "#FFFFFF";
+         }
+         function mouseOver2() {
+         document.getElementById("b").style.backgroundColor = "#E1E1E1";
+         }
+         function mouseOut2() {
+           document.getElementById("b").style.backgroundColor = "#FFFFFF";
+         }
+         function filterState(){
+          validaCheckbox();
+          validaCheckbox2();
+          validaCheckbox3();
+        }
+
+     </script>
+  </body>
+</html>
