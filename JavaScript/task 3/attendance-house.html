@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>TGIF LOGO</title>
+    <link  rel="stylesheet" href="formato-texto.css" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  </head>
+  <body style="font-family:Comic Sans MS;">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <header>
+      <div class="row">
+      <div class="col">
+      <div class="d-inline">
+        <img  class="img-responsive" src="imagen/imagen3.png" width="40" height="70" >
+        <span >TGIF</span>
+        <span class="align-bottom"> Logo   </span>
+      </div>
+      </div>
+      <div class="col">
+        <div class="float-right">
+          <img class="img-responsive" src="imagen/imagen1.png" width="50" height="30" >
+          <span><a style="text-decoration:underline  "href="mailto:info@tgif.net?subject=Reaching%20Out&body=How%20are%20you"> info@tgif.net</a></span>
+      </div>
+    </div>
+        </div>
+    </header>
+
+    <nav class="nav px-4">
+      <a class="nav-link active" href="senate-home.html">Home</a>
+      <a class="nav-link" data-toggle= "dropdown" href="#">Congress 113</a>
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li id='n' onMouseOver=mouseOver() onMouseOut=mouseOut()><a style="text-decoration:none" href="house.html">House</a></li>
+          <li id='b' onMouseOver=mouseOver2() onMouseOut=mouseOut2()><a style="text-decoration:none"  href="senate.html">Senate</a></li>
+        </ul>
+      <a class="nav-link" data-toggle="dropdown" href="#">Attendance</a>
+      <ul class="dropdown-menu">
+        <li id='n' onMouseOver=mouseOver() onMouseOut=mouseOut()><a style="text-decoration:none" href="#">House</a></li>
+        <li id='b' onMouseOver=mouseOver2() onMouseOut=mouseOut2()><a style="text-decoration:none"  href="#">Senate</a></li>
+      </ul>
+      <a class="nav-link" data-toggle="dropdown" href="#">Party Loyalty</a>
+      <ul class="dropdown-menu">
+        <li id='n' onMouseOver=mouseOver() onMouseOut=mouseOut()><a style="text-decoration:none" href="#">House</a></li>
+        <li id='b' onMouseOver=mouseOver2() onMouseOut=mouseOut2()><a style="text-decoration:none"  href="#">Senate</a></li>
+      </ul>
+    </nav>
+    <section>
+        <article>
+          <h2>Attendance</h2>
+          <div class="row">
+            <div class="container-fluid ">
+                <table style="width: 50%;" id="Table1"class="table table-bordered table-striped float-right h-0">
+                    <script src = "pro-congress-115-senate.js"></script>
+                    <script src = "attendance-house.js"></script>
+                </table>
+                <div class="container-fluid ">
+                  <div class=" ml-1 " style="width: 50%;"> The Constitution specifies that a majority of members constitutes a quorum to do business in each house. Representatives and senators rarely force the presence of a quorum by demanding quorum calls; thus, in most cases, debates continue even if a majority is not present.
+                    The Senate uses roll-call votes; a clerk calls out the names of all the senators, each senator stating "aye" or "no" when his or her name is announced. The House reserves roll-call votes for the most formal matters, as a roll-call of all 435 representatives takes quite some time; normally, members vote by electronic device. In the case of a tie, the motion in question fails. In the Senate, the Vice President may (if present) cast the tiebreaking vote.</p>
+                    </div>
+                </div>
+             </div>
+          </div>
+        </article>
+          <hr>
+    </section>
+    </body>
+    </html>
