@@ -1,48 +1,46 @@
 var objectSenate = JSON.parse(JSON.stringify(senate));
-function stadistics(){
-  this.nreps = 0 ;
-  this.votedwparty = 0;
-  this.name = ' ';
-  this.nmissed= 0;
-  this.missed = 0;
+function importarScript(nombre) {
+    var s = document.createElement("script");
+    s.src = nombre;
+    document.querySelector("head").appendChild(s);
 }
 function mostrarEstadisticaGenera(){
-  var republicano = new stadistics();
-  var democratico = new stadistics();
-  var independente = new stadistics();
+  var rep = new stadistics();
+  var dem = new stadistics();
+  var inden = new stadistics();
+  var republicano = rep.crearEstadistica('HouseAtAGlance');
+  var democratico = dem.crearEstadistica('HouseAtAGlance');
+  var independente = inden.crearEstadistica('HouseAtAGlance');
   var totalsuma;
   var totalcantidad;
 
   for(var i = 0;i < objectSenate.length; i++){
     if(objectSenate[i].party == 'R' ){
-      republicano.votedwparty+=  objectSenate[i].votes_with_party_pct;
-      republicano.nreps+= 1;
+      republicano.setVotedwParty(republicano.getVotedwParty() + objectSenate[i].votes_with_party_pct);
+      republicano.setNreps(republicano.getNreps() + 1);
     }
     if(objectSenate[i].party =='D'){
-      democratico.votedwparty+= objectSenate[i].votes_with_party_pct;
-      democratico.nreps+=1;
+      democratico.setVotedwParty(democratico.getVotedwParty() + objectSenate[i].votes_with_party_pct);
+      democratico.setNreps(democratico.getNreps() + 1);
     }
     if(objectSenate[i].party == 'I'){
-      independente.votedwparty+=  objectSenate[i].votes_with_party_pct;
-      independente.nreps+= 1;
+     independente.setVotedwParty(independente.getVotedwParty() + objectSenate[i].votes_with_party_pct);
+     independente.setNreps(independente.getNreps() + 1);
     }
   }
-    totalsuma = republicano.votedwparty + democratico.votedwparty +   independente.votedwparty;
-    republicano.votedwparty = (republicano.votedwparty/100);
-    democratico.votedwparty = (democratico.votedwparty/100);
-    independente.votedwparty = (  independente.votedwparty/100);
+    totalsuma = republicano.getVotedwParty()+ democratico.getVotedwParty() +   independente.getVotedwParty();
+    democratico.setVotedwParty( democratico.getVotedwParty() / 100);
+    republicano.setVotedwParty(republicano.getVotedwParty()/100);
+    independente.setVotedwParty(independente.getVotedwParty()/100);
     totalsuma = totalsuma/100;
-    totalcantidad = republicano.nreps + democratico.nreps + independente.nreps;
+    totalcantidad = republicano.getNreps() + democratico.getNreps() + independente.getNreps();
     $("#Table1").append('<tr><th>Party</th>'+
     '<th>No. of Reps</th>'+'<th>% votes w/ parte</th></tr>'+
-      '<tr><td>Democrats </td>'+ '<td>'+ democratico.nreps+ '</td>'+ '<td>'+democratico.votedwparty.toFixed(2)  +'</td></tr>'+
-      '<tr><td>Republician </td>'+ '<td>'+republicano.nreps+ '</td>'+ '<td>'+republicano.votedwparty.toFixed(2)  +'</td></tr>'+
-      '<tr><td>Independent </td>'+ '<td>'+independente.nreps+ '</td>'+ '<td>'+independente.votedwparty.toFixed(2)  +'</td></tr>'+
+      '<tr><td>Democrats </td>'+ '<td>'+  democratico.getNreps()+ '</td>'+ '<td>'+democratico.getVotedwParty().toFixed(2)  +'</td></tr>'+
+      '<tr><td>Republician </td>'+ '<td>'+republicano.getNreps()+ '</td>'+ '<td>'+republicano.getVotedwParty().toFixed(2)  +'</td></tr>'+
+      '<tr><td>Independent </td>'+ '<td>'+ independente.getNreps()+ '</td>'+ '<td>'+independente.getVotedwParty().toFixed(2)  +'</td></tr>'+
       '<tr><td>total </td>'+ '<td>'+totalcantidad+ '</td>'+ '<td>'+totalsuma.toFixed(2)  +'</td></tr>');
 }
-function leastEngage() {
-  var totalLeast = [];
 
-}
-
+  importarScript('Factory.js');
   mostrarEstadisticaGenera();
