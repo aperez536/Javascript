@@ -1,9 +1,4 @@
 var objectSenate = JSON.parse(JSON.stringify(senate));
-function importarScript(nombre) {
-    var s = document.createElement("script");
-    s.src = nombre;
-    document.querySelector("head").appendChild(s);
-}
 function mostrarEstadisticaGenera(){
   var rep = new stadistics();
   var dem = new stadistics();
@@ -42,5 +37,4 @@ function mostrarEstadisticaGenera(){
       '<tr><td>total </td>'+ '<td>'+totalcantidad+ '</td>'+ '<td>'+totalsuma.toFixed(2)  +'</td></tr>');
 }
 
-  importarScript('Factory.js');
   mostrarEstadisticaGenera();
