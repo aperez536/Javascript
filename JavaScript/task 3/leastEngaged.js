@@ -11,12 +11,12 @@ function DatostotalLeas(totalLeast,comparaNumero){
       lEngaged.setMissed(totalLeast[i].missed_votes_pct);
       lEngaged.setUrl(totalLeast[i].url);
       if(totalLeast[i].missed_votes_pct <= comparaNumero){
-        $("#Table3").append('<tr>'+'<td>'+'<a href='+ lEngaged.getUrl()+'>' +lEngaged.getName() +'</a>'+'</td>'+
+        $("#Table2").append('<tr>'+'<td>'+'<a href='+ lEngaged.getUrl()+'>' +lEngaged.getName() +'</a>'+'</td>'+
          '<td>'+lEngaged.getNmvotes()+'</td>'+
          '<td>'+lEngaged.getMissed() +'</td>'+'</tr>');
      }
      else{
-       $("#Table2").append('<tr>'+'<td>'+'<a href='+ lEngaged.getUrl()+'>' +lEngaged.getName() +'</a>'+'</td>'+
+       $("#Table3").append('<tr>'+'<td>'+'<a href='+ lEngaged.getUrl()+'>' +lEngaged.getName() +'</a>'+'</td>'+
        '<td>'+lEngaged.getNmvotes()+'</td>'+
        '<td>'+lEngaged.getMissed() +'</td>'+'</tr>');
      }
@@ -62,6 +62,7 @@ function leastEngage() {
       }
       //
       comparaNumero = totalLeast[total].missed_votes_pct;
+    
       DatostotalLeas(totalLeast,comparaNumero);
 
 }
