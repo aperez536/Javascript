@@ -1,9 +1,9 @@
 function DatostotalLeas(totalLeast,comparaNumero){
     var estadistica = new stadistics;
     $("#Table2").append('<tr><th>Name</th>'+
-    '<th>No. Missed voted</th>'+'<th>% votes w/ parte</th></tr>');
+    '<th>No. Missed votes</th>'+'<th>% votes w/ party</th></tr>');
     $("#Table3").append('<tr><th>Name</th>'+
-    '<th>No. Missed voted</th>'+'<th>% votes w/ parte</th></tr>');
+    '<th>No. Missed votes</th>'+'<th>% votes w/ party</th></tr>');
     var lEngaged = estadistica.crearEstadistica('leastEngage');
     for(var i = 0 ; i< totalLeast.length;i++){
       lEngaged.setName(totalLeast[i].nombre);
@@ -28,7 +28,6 @@ function leastEngage() {
   var total;
   var aux;
   var i=0;
-  var percentil;
   //Calculo del percentil
   while(Number.isInteger(total) == false){
     total = ((objectSenate.length + i )* 10)/100 ;
@@ -62,7 +61,7 @@ function leastEngage() {
       }
       //
       comparaNumero = totalLeast[total].missed_votes_pct;
-    
+
       DatostotalLeas(totalLeast,comparaNumero);
 
 }

@@ -27,14 +27,15 @@ class HouseAtAGlance {
     setVotedwParty(votedwParty){
       this.votedwParty = votedwParty;
     }
-
   }
 
 class LeastEngaged {
   constructor() {
-    this.name = '';
-    this.nmvotes = 0;
-    this.missed = 0;
+    this.name;
+    this.nmvotes;
+    this.missed;
+    this.votedwParty;
+    this.total_votes;
   }
   getName(){
     return this.name;
@@ -45,6 +46,9 @@ class LeastEngaged {
   getMissed(){
     return this.missed;
   }
+  getVotedwParty(){
+    return this.votedwParty;
+  }
   setName(name){
     this.name = name;
   }
@@ -53,6 +57,15 @@ class LeastEngaged {
   }
   setMissed(missed){
     this.missed = missed;
+  }
+  setVotedwParty(votedwParty){
+    this.votedwParty = votedwParty;
+  }
+  setTotalVotes(totalVotes){
+    this.total_votes = totalVotes;
+  }
+  getTotalVotes(){
+    return this.total_votes;
   }
 }
 
@@ -62,6 +75,8 @@ class MostEngaged {
     this.nmvotes = 0;
     this.missed = 0;
     this.url = '';
+    this.votedwParty;
+    this.total_votes;
   }
   getName(){
     return this.name;
@@ -78,6 +93,7 @@ class MostEngaged {
   setNmvotes(nmvotes){
     this.nmvotes = nmvotes;
   }
+
   setMissed(missed){
     this.missed = missed;
   }
@@ -86,5 +102,17 @@ class MostEngaged {
   }
   getUrl(){
     return this.url;
+  }
+  setVotedwParty(votedwParty){
+    this.votedwParty = votedwParty;
+  }
+  getVotedwParty(){
+    return this.votedwParty;
+  }
+  setTotalVotes(totalVotes){
+    this.total_votes = totalVotes;
+  }
+  getTotalVotes(){
+    return this.total_votes;
   }
 }
