@@ -2,10 +2,10 @@ var pathname = window.location.pathname;
 var objectSenate;
 var objectHouse;
 var dato;
-if(pathname =='/partyLoyalty-senate.html'){
+if(pathname =='/partyLoyaltySenate.html'){
   dato = JSON.parse(JSON.stringify(senate));
 }
-else if(pathname =='/partyLoyalty-house.html'){
+else if(pathname =='/partyLoyaltyHouse.html'){
  dato = JSON.parse(JSON.stringify(house));
 }
 function mostrarEstadisticaGenera(){
@@ -17,7 +17,6 @@ function mostrarEstadisticaGenera(){
   var independente = inden.crearEstadistica('HouseAtAGlance');
   var totalsuma;
   var totalcantidad;
-
   for(var i = 0;i < dato.length; i++){
     if(dato[i].party == 'R' ){
       if(dato[i].votes_with_party_pct != undefined){
