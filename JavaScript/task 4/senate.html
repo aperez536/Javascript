@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>TGIF LOGO</title>
+    <link  rel="stylesheet" href="formato-texto.css" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link  rel="stylesheet" href="estiloTabla.css" type="text/css">
+  </head>
+  <body style="font-family:Comic Sans MS;">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <header>
+      <div class="row">
+        <div class="col">
+          <div class="d-inline">
+            <img  class="img-responsive" src="imagen/imagen3.png" width="40" height="70" >
+            <span >TGIF</span>
+            <span class="align-bottom"> Logo   </span>
+          </div>
+        </div>
+          <div class="col">
+            <div class="float-right">
+              <img class="img-responsive" src="imagen/imagen1.png" width="50" height="30" >
+              <span><a style="text-decoration:underline  "href="mailto:info@tgif.net?subject=Reaching%20Out&body=How%20are%20you"> info@tgif.net</a></span>
+            </div>
+          </div>
+        </div>
+    </header>
+    <nav class="navbar navbar-expand-sm ">
+
+      <!-- Links -->
+      <ul class="navbar-nav px-4">
+        <li class="nav-item">
+          <a class="nav-link" href="senate-home.html"> Home</a>
+        </li>
+
+        <!-- Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+            Congress 113
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="house.html">House</a>
+            <a class="dropdown-item" href="senate.html">Senate</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+            Attendance
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="attendance-house.html">House</a>
+            <a class="dropdown-item" href="attendance-senate.html">Senate</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+            Party Loyalty
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="partyLoyaltyHouse.html">House</a>
+            <a class="dropdown-item" href="partyLoyaltySenate.html">Senate</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+    <section>
+      <article>
+        <div class="text-secondary">
+        <br>
+        <h2>Senate </h2>
+          <p>First convened in 1789, the composition and powers of the Senate are established in Article One of the U.S. Constitution. Each state is represented by two senators, regardless of population, who serve staggered six-year terms. The Senate has several exclusive powers not granted to the House, including consenting to treaties as a precondition to their ratification and consenting to or confirming appointments of Cabinet secretaries, federal judges, other federal executive officials, military officers, regulatory officials, ambassadors, and other federal uniformed officers, as well as trial of federal officials impeached by the House.</p>
+          Filter by Party:
+
+          <input type="checkbox" id="Republican" value="R"> <label for="cbox2">Republican</label>
+          <input type="checkbox" id="Democrat" value="D"> <label for="cbox2">Democrat</label>
+          <input type="checkbox" id="Independent" value="I"> <label for="cbox2">Independent</label>
+          <!-- salto de linea -->
+          <div class="clearfix"></div>
+          Filty by State:
+          <select id="estado" onchange="filterState()">
+            <option value="all">ALL</option>
+            <option value="TN">TN</option>
+            <option value="WI">WI</option>
+            <option value="WY">WY</option>
+            <option value="CO">CO</option>
+            <option value="CT">CT</option>
+            <option value="MO"> MO</option>
+            <option value="NJ"> NJ</option>
+            <option value="AR">AR</option>
+            <option value="OH">OH</option>
+            <option value="NC">NC</option>
+            <option value="WV">WV</option>
+            <option value="WA"> WA</option>
+            <option value="MD">MD</option>
+            <option value="DE">DE</option>
+            <option value="PA">PA</option>
+            <option value="LA">LA</option>
+            <option value="MS">MS</option>
+            <option value="ME">ME</option>
+            <option value="TX">TX</option>
+            <option value="NV">NV</option>
+            <option value="ID">ID</option>
+            <option value="MT">MT</option>
+            <option value="IN"> IN</option>
+            <option value="IL">IL</option>
+            <option value="IA">IA</option>
+            <option value="NE">NE</option>
+            <option value="CA">CA</option>
+            <option value="AZ">AZ</option>
+            <option value="NY">NY</option>
+            <option value="MN">MN</option>
+            <option value="SC">SC</option>
+            <option value="UT">UT</option>
+            <option value="NH">NH</option>
+            <option value="NM">NM</option>
+            <option value="ND">ND</option>
+            <option value="HI">HI</option>
+            <option value="OK">OK</option>
+            <option value="GA">GA</option>
+            <option value="AL">AL</option>
+            <option value="VA">VA</option>
+            <option value="VT">VT</option>
+            <option value="MA">MA</option>
+            <option value="OR">OR</option>
+            <option value="KS">KS</option>
+            <option value="AK">AK</option>
+            <option value="FL">FL</option>
+            <option value="MI">MI</option>
+            <option value="RI">RI</option>
+            <option value="SD">SD</option>
+        </select>
+        <table id="datos_del_senado">
+            <script src = "pro-congress-115-senate.js"></script>
+            <script src = "senate.js"></script>
+              <table id="Table"> </table>
+        </table>
+
+      </article>
+    </section>
+
+  </body>
+</html>
