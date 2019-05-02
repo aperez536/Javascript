@@ -10,11 +10,13 @@
     <link  rel="stylesheet" href="estiloTabla.css" type="text/css">
   </head>
   <body style="font-family:Comic Sans MS;">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
+    <script src = "pro-congress-115-senate.js"></script>
+    <script src = "senate.js"></script>
     <header>
       <div class="row">
         <div class="col">
@@ -135,15 +137,23 @@
             <option value="MI">MI</option>
             <option value="RI">RI</option>
             <option value="SD">SD</option>
-        </select>
-        <table id="datos_del_senado">
-            <script src = "pro-congress-115-senate.js"></script>
-            <script src = "senate.js"></script>
-              <table id="Table"> </table>
-        </table>
+          </select>
+            <div class="container" id="app">
+              <div>
+              <tbody>
+                <tr v-for="(value, key) in senateData">
+                 <td>{{value.first_name}}: {{value.middle_name}} :{{value.last_name}}</td>
+                 <td>{{...}}</td>
+                 <td>{{...}}</td>
+                 <td>{{...}}</td>
+                 <td>{{...}}</td>
+                </tr>
+              </tbody>
+            </div>
+
 
       </article>
     </section>
-
+    <script src = "app.js"></script>
   </body>
 </html>

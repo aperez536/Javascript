@@ -1,3 +1,11 @@
+/**
+ * @Date:   2019-04-26T20:18:37-03:00
+ * @Last modified time: 2019-04-28T15:54:01-03:00
+ */
+
+
+
+/*
 var arraytotal = [];
 var filterByState = [];
 var objectSenate = JSON.parse(JSON.stringify(senate));
@@ -340,3 +348,4 @@ function validaCheckbox(){
   validaCheckbox2();
   validaCheckbox3();
 }
+*/
