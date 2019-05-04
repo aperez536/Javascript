@@ -1,6 +1,12 @@
+/**
+ * @Date:   2019-04-21T19:38:35-03:00
+ * @Last modified time: 2019-05-04T17:45:57-03:00
+ */
+
+
+
 var pathname = window.location.pathname;
-var objectSenate;
-var objectHouse;
+
 var dato;
 if(pathname =='/partyLoyaltySenate.html'){
   dato = JSON.parse(JSON.stringify(senate));

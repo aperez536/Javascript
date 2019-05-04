@@ -1,5 +1,16 @@
+/**
+ * @Date:   2019-04-15T18:48:30-03:00
+ * @Last modified time: 2019-05-04T18:00:46-03:00
+ */
+var pathname = window.location.pathname;
+var dato;
+if(pathname =='/senate.html'){
+  dato = JSON.parse(JSON.stringify(senate));
+}
+else if(pathname =='/house.html'){
+ dato = JSON.parse(JSON.stringify(house));
+}
    var arraytotal = [];
-   var objectHouse = JSON.parse(JSON.stringify(house));
    var resultado = document.getElementById("datos_del_senado");
    var nombreCompleto;
    var checkbox = document.getElementById('Republican');
@@ -90,22 +101,22 @@
    }
    function cargarDatosEnObjeto(result){
 
-    for(var i = 0 ; i< objectHouse.length; i++){
-         if(objectHouse[i].party === result){
+    for(var i = 0 ; i< dato.length; i++){
+         if(dato[i].party === result){
            var p = new Persona();
-           if(objectHouse[i].middle_name != null){
-               p.nombre =objectHouse[i].last_name+ " "+objectHouse[i].middle_name+" "+objectHouse[i].first_name;
+           if(dato[i].middle_name != null){
+               p.nombre =dato[i].last_name+ " "+dato[i].middle_name+" "+dato[i].first_name;
            }
            else{
-               p.nombre =objectHouse[i].last_name+ " "+objectHouse[i].first_name;
+               p.nombre =dato[i].last_name+ " "+dato[i].first_name;
            }
-          p.idPersona = objectHouse[i].id;
-          p.url = objectHouse[i].url;
-          p.party = objectHouse[i].party;
-          p.state = objectHouse[i].state;
-          p.seniority = objectHouse[i].seniority;
-          p.votes_with_party_pct = objectHouse[i].votes_with_party_pct;
-          if(validarPersona( objectHouse[i].id) == false){
+          p.idPersona = dato[i].id;
+          p.url = dato[i].url;
+          p.party = dato[i].party;
+          p.state = dato[i].state;
+          p.seniority = dato[i].seniority;
+          p.votes_with_party_pct = dato[i].votes_with_party_pct;
+          if(validarPersona( dato[i].id) == false){
               arraytotal.push(p);
           }
        }
@@ -291,19 +302,19 @@
      function mostrarTablaCompleta(){
       $("#Table").empty();
       titulo();
-      for(var i = 0 ; i< objectHouse.length;i++){
-         if(objectHouse[i].middle_name != null){
-             nombreCompleto =objectHouse[i].last_name+ " "+objectHouse[i].middle_name+" "+objectHouse[i].first_name
+      for(var i = 0 ; i< dato.length;i++){
+         if(dato[i].middle_name != null){
+             nombreCompleto =dato[i].last_name+ " "+dato[i].middle_name+" "+dato[i].first_name
          }
          else{
-             nombreCompleto =objectHouse[i].last_name+ " "+objectHouse[i].first_name
+             nombreCompleto =dato[i].last_name+ " "+dato[i].first_name
          }
        $("#Table").append('<tr>'+
-       '<td>'+'<a href='+objectHouse[i].url+'>' +nombreCompleto+'</a>'+'</td>'+
-       '<td>'+objectHouse[i].party+'</td>'+
-       '<td>'+objectHouse[i].state+'</td>'+
-       '<td>'+objectHouse[i].seniority+'</td>'+
-       '<td>'+objectHouse[i].votes_with_party_pct+
+       '<td>'+'<a href='+dato[i].url+'>' +nombreCompleto+'</a>'+'</td>'+
+       '<td>'+dato[i].party+'</td>'+
+       '<td>'+dato[i].state+'</td>'+
+       '<td>'+dato[i].seniority+'</td>'+
+       '<td>'+dato[i].votes_with_party_pct+
        '</td>'+'</tr>');
      }
 

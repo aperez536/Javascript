@@ -1,5 +1,19 @@
-var objectHouse = JSON.parse(JSON.stringify(house));
-console.log(objectHouse.length);
+/**
+ * @Date:   2019-05-04T17:54:04-03:00
+ * @Last modified time: 2019-05-04T17:54:04-03:00
+ */
+
+
+
+var pathname = window.location.pathname;
+var dato;
+if(pathname =='/attendance-senate.html'){
+  dato = JSON.parse(JSON.stringify(senate));
+}
+else if(pathname =='/attendance-house.html'){
+ dato = JSON.parse(JSON.stringify(house));
+}
+console.log(dato.length);
 function mostrarEstadisticaGenera(){
   var rep = new stadistics();
   var dem = new stadistics();
@@ -10,18 +24,18 @@ function mostrarEstadisticaGenera(){
   var totalsuma;
   var totalcantidad;
 
-  for(var i = 0;i < objectHouse.length; i++){
+  for(var i = 0;i < dato.length; i++){
 
-  if(objectHouse[i].party == 'R'  && objectHouse[i].votes_with_party_pct != undefined){
-      republicano.setVotedwParty(republicano.getVotedwParty() + objectHouse[i].votes_with_party_pct);
+  if(dato[i].party == 'R'  && dato[i].votes_with_party_pct != undefined){
+      republicano.setVotedwParty(republicano.getVotedwParty() + dato[i].votes_with_party_pct);
       republicano.setNreps(republicano.getNreps() + 1);
   }
-  if(objectHouse[i].party =='D' && objectHouse[i].votes_with_party_pct != undefined){
-      democratico.setVotedwParty(democratico.getVotedwParty() + objectHouse[i].votes_with_party_pct);
+  if(dato[i].party =='D' && dato[i].votes_with_party_pct != undefined){
+      democratico.setVotedwParty(democratico.getVotedwParty() + dato[i].votes_with_party_pct);
       democratico.setNreps(democratico.getNreps() + 1);
   }
-    if(objectHouse[i].party == 'I' && objectHouse[i].votes_with_party_pct != undefined){
-     independente.setVotedwParty(independente.getVotedwParty() + objectHouse[i].votes_with_party_pct);
+    if(dato[i].party == 'I' && dato[i].votes_with_party_pct != undefined){
+     independente.setVotedwParty(independente.getVotedwParty() + dato[i].votes_with_party_pct);
      independente.setNreps(independente.getNreps() + 1);
     }
   }
