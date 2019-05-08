@@ -10,6 +10,7 @@
     <link  rel="stylesheet" href="estiloTabla.css" type="text/css">
   </head>
   <body style="font-family:Comic Sans MS;">
+     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -74,79 +75,100 @@
         <br>
         <h2>Congressmen </h2>
         <p>First convened in 1789, the composition and powers of the Senate are established in Article One of the U.S. Constitution. Each state is represented by two senators, regardless of population, who serve staggered six-year terms. The Senate has several exclusive powers not granted to the House, including consenting to treaties as a precondition to their ratification and consenting to or confirming appointments of Cabinet secretaries, federal judges, other federal executive officials, military officers, regulatory officials, ambassadors, and other federal uniformed officers, as well as trial of federal officials impeached by the House.</p>
-        Filter by Party:
-        <input type="checkbox" id="Republican" value="R"  > <label for="cbox2">Republican</label>
-        <input type="checkbox" id="Democrat" value="D" > <label for="cbox2">Democrat</label>
-        <input type="checkbox" id="Independent" value="I" > <label for="cbox2">Independent</label>
-        <div class="clearfix"></div>
-        Filty by State:
-        <select id="estado" onchange="filterState()">
-            <option value="all">ALL</option>
-            <option value="LA">LA</option>
-            <option value="NC">NC</option>
-            <option value="AL">AL</option>
-            <option value="CA">CA</option>
-            <option value="GA">GA</option>
-            <option value="MI">MI</option>
-            <option value="NV">NV</option>
-            <option value="TX">TX</option>
-            <option value="NE">NE</option>
-            <option value="OH">OH</option>
-            <option value="IN">IN</option>
-            <option value="PA">PA</option>
-            <option value="KY">KY</option>
-            <option value="VA">VA</option>
-            <option value="AZ">AZ</option>
-            <option value="FL">FL</option>
-            <option value="UT">UT</option>
-            <option value="TN">TN</option>
-            <option value="IA">IA</option>
-            <option value="OR">OR</option>
-            <option value="DE">DE</option>
-            <option value="GU">GU</option>
-            <option value="IL">IL</option>
-            <option value="OK">OK</option>
-            <option value="MD">MD</option>
-            <option value="CO">CO</option>
-            <option value="MA">MA</option>
-            <option value="WY">WY</option>
-            <option value="RI">RI</option>
-            <option value="NY">NY</option>
-            <option value="MO">MO</option>
-            <option value="SC">SC</option>
-            <option value="CT">CT</option>
-            <option value="ND">ND</option>
-            <option value="AR">AR</option>
-            <option value="WA">WA</option>
-            <option value="WI">WI</option>
-            <option value="MN">MN</option>
-            <option value="KS">KS</option>
-            <option value="NJ">NJ</option>
-            <option value="HI">HI</option>
-            <option value="MT">MT</option>
-            <option value="PR">PR</option>
-            <option value="MS">MS</option>
-            <option value="WV">WV</option>
-            <option value="NH">NH</option>
-            <option value="ID">ID</option>
-            <option value="NM">NM</option>
-            <option value="SD">SD</option>
-            <option value="DC">DC</option>
-            <option value="ME">ME</option>
-            <option value="VI">VI</option>
-            <option value="AS">AS</option>
-            <option value="MP">MP</option>
-            <option value="VT">VT</option>
-            <option value="AK">AK</option>
-        </select>
-        <table id="datos_del_house">
-            <script src = "pro-congress-115-house.js"></script>
-            <script src = "house.js"></script>
-              <table id="Table"> </table>
-        </table>
-
+        <div id="app1">
+            <div class="row container-fluid">
+              <div class="col md-6">
+                  Filter by Party:
+                  <input type="checkbox" v-model="filter1" @click="mostrarTabla" id="R" value="R" >  <label for="cbox1">Republican</label>
+                  <input type="checkbox" v-model="filter1" @click="mostrarTabla" id="D" value="D" > <label for="cbox2">Democrat</label>
+                  <input type="checkbox" v-model="filter1" @click="mostrarTabla" id="I" value="I" > <label for="cbox3">Independent</label>
+                  <!-- salto de linea -->
+                  <div class="clearfix"></div>
+                  Filty by State:
+                  <select id="estado" v-model="select" @click="mostrarTabla" >
+                    <option value="all">ALL</option>
+                    <option value="TN">TN</option>
+                    <option value="WI">WI</option>
+                    <option value="WY">WY</option>
+                    <option value="CO">CO</option>
+                    <option value="CT">CT</option>
+                    <option value="MO"> MO</option>
+                    <option value="NJ"> NJ</option>
+                    <option value="AR">AR</option>
+                    <option value="OH">OH</option>
+                    <option value="NC">NC</option>
+                    <option value="WV">WV</option>
+                    <option value="WA"> WA</option>
+                    <option value="MD">MD</option>
+                    <option value="DE">DE</option>
+                    <option value="PA">PA</option>
+                    <option value="LA">LA</option>
+                    <option value="MS">MS</option>
+                    <option value="ME">ME</option>
+                    <option value="TX">TX</option>
+                    <option value="NV">NV</option>
+                    <option value="ID">ID</option>
+                    <option value="MT">MT</option>
+                    <option value="IN"> IN</option>
+                    <option value="IL">IL</option>
+                    <option value="IA">IA</option>
+                    <option value="NE">NE</option>
+                    <option value="CA">CA</option>
+                    <option value="AZ">AZ</option>
+                    <option value="NY">NY</option>
+                    <option value="MN">MN</option>
+                    <option value="SC">SC</option>
+                    <option value="UT">UT</option>
+                    <option value="NH">NH</option>
+                    <option value="NM">NM</option>
+                    <option value="ND">ND</option>
+                    <option value="HI">HI</option>
+                    <option value="OK">OK</option>
+                    <option value="GA">GA</option>
+                    <option value="AL">AL</option>
+                    <option value="VA">VA</option>
+                    <option value="VT">VT</option>
+                    <option value="MA">MA</option>
+                    <option value="OR">OR</option>
+                    <option value="KS">KS</option>
+                    <option value="AK">AK</option>
+                    <option value="FL">FL</option>
+                    <option value="MI">MI</option>
+                    <option value="RI">RI</option>
+                    <option value="SD">SD</option>
+                  </select>
+                  <br>
+                  {{filter1}}
+                <table class="table">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th>Name</th>
+                        <th>Party</th>
+                        <th>State</th>
+                        <th>Years in Office</th>
+                        <th>% votes w/ parte</th>
+                      </tr>
+                    </thead>
+                  <tbody>
+                    <tr v-for="senate in filter2" >
+                      <td> <a :href='senate.url'> {{senate.first_name}} {{senate.middle_name}} {{senate.last_name}}</a> </td>
+                      <td>{{senate.party }}</td>
+                      <td>{{senate.state }}</td>
+                      <td>{{senate.seniority}}</td>
+                      <td>{{senate.votes_with_party_pct }}%</td>
+      
+                    </tr>
+                  </tbody>
+                  
+                </table>
+      
+  
+              </div>
+            </div>
+          </div>
+      
       </article>
     </section>
-
+    <script src="app.js"></script>
   </body>
 </html>

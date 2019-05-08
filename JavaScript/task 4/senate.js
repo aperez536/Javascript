@@ -5,10 +5,10 @@
 
 
 
-/*
+
 var arraytotal = [];
 var filterByState = [];
-var objectSenate = JSON.parse(JSON.stringify(senate));
+var app.senateData;
 var nombreCompleto;
 var checkbox = document.getElementById('Republican');
 var checkbox2 = document.getElementById('Democrat');
@@ -348,4 +348,4 @@ function validaCheckbox(){
   validaCheckbox2();
   validaCheckbox3();
 }
-*/
+
