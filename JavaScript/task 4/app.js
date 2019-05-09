@@ -1,6 +1,6 @@
 /**
  * @Date:   2019-04-28T16:03:36-03:00
- * @Last modified time: 2019-05-08T16:28:44-03:00
+ * @Last modified time: 2019-05-08T20:15:03-03:00
  */
 var app = new Vue({
   el: '#app1',
@@ -12,6 +12,9 @@ var app = new Vue({
     filter2: [],
     select:"",
     text:"",
+    rep:"",
+    dem:"",
+    inden:"",
     pathname:window.location.pathname,
   },
   methods: {
