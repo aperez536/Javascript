@@ -1,10 +1,12 @@
 /**
  * @Date:   2019-04-21T19:38:35-03:00
- * @Last modified time: 2019-05-04T17:45:57-03:00
+ * @Last modified time: 2019-05-10T00:15:01-03:00
  */
 
 
-
+ function NaN2Zero(n){
+    return isNaN( n ) ? 0 : n;
+}
 var pathname = window.location.pathname;
 
 var dato;
@@ -44,10 +46,14 @@ function mostrarEstadisticaGenera(){
     }
   }
     totalsuma = republicano.getVotedwParty()+ democratico.getVotedwParty() +   independente.getVotedwParty();
-    democratico.setVotedwParty( democratico.getVotedwParty() / totalsuma);
-    republicano.setVotedwParty(republicano.getVotedwParty()/totalsuma);
-    independente.setVotedwParty(independente.getVotedwParty()/totalsuma);
-    totalsuma = totalsuma/totalsuma;
+
+    democratico.setVotedwParty( democratico.getVotedwParty() / democratico.getNreps());
+    republicano.setVotedwParty(republicano.getVotedwParty()/republicano.getNreps());
+    independente.setVotedwParty(independente.getVotedwParty()/independente.getNreps());
+    democratico.setVotedwParty(  NaN2Zero(democratico.getVotedwParty())) ;
+    republicano.setVotedwParty(NaN2Zero(republicano.getVotedwParty())) ;
+    independente.setVotedwParty(NaN2Zero(independente.getVotedwParty())) ;
+    totalsuma = ( (democratico.getVotedwParty() + republicano.getVotedwParty() + independente.getVotedwParty() )/3);
     totalcantidad = republicano.getNreps() + democratico.getNreps() + independente.getNreps();
     $("#Table1").append('<tr><th>Party</th>'+
     '<th>No. of Reps</th>'+'<th>% votes w/ parte</th></tr>'+
