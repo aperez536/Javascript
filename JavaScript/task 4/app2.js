@@ -1,6 +1,6 @@
 /**
  * @Date:   2019-04-28T16:03:36-03:00
- * @Last modified time: 2019-05-10T20:59:53-03:00
+ * @Last modified time: 2019-05-10T22:38:29-03:00
  */
 var app2 = new Vue({
   el: '#app2',
@@ -9,12 +9,11 @@ var app2 = new Vue({
     url: "",
     pw: "W0e4QOiJNvMVHrhETcK3K9BLyMDSeQ2nDfLK0tgr",
     text:"",
-
     rep:new stadistics().crearEstadistica('HouseAtAGlance'),
     dem:new stadistics().crearEstadistica('HouseAtAGlance'),
     inden:new stadistics().crearEstadistica('HouseAtAGlance'),
-    lEngagedLeast:  new stadistics().crearEstadistica('leastEngage'),
-    lEngagedMost:  new stadistics().crearEstadistica('leastEngage'),
+    lEngagedLeast:[],
+    lEngagedMost: [],
     pathname:window.location.pathname,
     mostrar:new Array(8),
   },
@@ -27,13 +26,11 @@ var app2 = new Vue({
       }).then(response => response.json())
         .then(data => {
           this.senateData = data.results[0].members;
-          console.log(this.senateData);
-
-          this.mostrarEstadistica();
+          //this.mostrarEstadistica();
+          this.procedimientosDeCalculo();
           //localStorage.setItem("Datos", JSON.stringify(this.senateData));
         })
         .catch(err => console.log(err))
-
     },
     cargaPag: function(){
       if(this.pathname.includes('attendance-senate.html')){
@@ -96,24 +93,27 @@ var app2 = new Vue({
           console.log("i es "+i  +"  "+this.mostrar[i]);
         }
       },
-      mostrarEngaged: function(){
+      mostrarEngaged: function(totalLeast,comparaNumero){
         console.log("aca toy");
-        for(var i = 0 ; i< tthis.senateData.length;i++){
-          lEngaged.setName(this.senateData[i].nombre);
-          lEngaged.setNmvotes (this.senateData[i].missed_votes);
-          lEngaged.setMissed(this.senateData[i].missed_votes_pct);
-          lEngaged.setUrl(this.senateData[i].url);
-          if(this.senateData[i].missed_votes_pct <= comparaNumero){
-          this.lEngagedLeast.push(this.senateData[i])
-         }
-         else{
-           this.lEngagedMost.push(this.senateData[i])
+        for(var i = 0 ; i< totalLeast.length;i++){
+          var lEngaged =  new stadistics().crearEstadistica('leastEngage');
+          lEngaged.setName(totalLeast[i].nombre);
+          lEngaged.setNmvotes (totalLeast[i].missed_votes);
+          lEngaged.setMissed(totalLeast[i].missed_votes_pct);
+          lEngaged.setUrl(totalLeast[i].url);
+          if(totalLeast[i].missed_votes_pct <= comparaNumero){
+            this.lEngagedLeast.push(lEngaged)
+          }
+          else{
+            this.lEngagedMost.push(lEngaged)
+
          }
         }
-        console.log(this.engagedMost);
-        console.log(this.engagedleast);
+        console.log(this.lEngagedLeast);
+        console.log(this.lEngagedMost);
       },
       procedimientosDeCalculo: function(){
+        console.log("entre aca");
         var comparaNumero;
         var totalLeast = [];
         var total;
@@ -149,8 +149,8 @@ var app2 = new Vue({
             }
             //
             comparaNumero = totalLeast[total].missed_votes_pct;
-
-            this.mostrarEstadistica(totalLeast,comparaNumero);
+            console.log(totalLeast.length);
+            this.mostrarEngaged(totalLeast,comparaNumero);
       }
   },
     computed: {
@@ -159,7 +159,6 @@ var app2 = new Vue({
     created() {
       this.cargaPag();
       this.getFech();
-
     },
 
   });
