@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   </head>
   <body style="font-family:Comic Sans MS;">
+    <script src = "Factory.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -79,7 +81,7 @@
               </div>
             <div class="row-sm position-relative" style="top:-40px";>
               <h3>Senate at a glance </h3>
-            <div id="app1">
+            <div id="app2">
               <table class="table">
                   <thead class="thead-dark">
                     <tr>
@@ -91,23 +93,23 @@
                 <tbody>
                   <tr>
                     <td> Democrats</td>
-                    <td> </td>
-                    <td> </td>
+                    <td>{{mostrar[0][0]}} </td>
+                    <td>{{mostrar[0][1]}} </td>
                   </tr>
                   <tr>
                     <td> Republicans</td>
-                    <td> </td>
-                    <td> </td>
+                    <td>{{mostrar[1][0]}} </td>
+                    <td>{{mostrar[1][1]}} </td>
                   </tr>
                   <tr>
                     <td>Independents </td>
-                    <td> </td>
-                    <td> </td>
+                    <td>{{mostrar[2][0]}} </td>
+                    <td>{{mostrar[2][1]}} </td>
                   </tr>
                   <tr>
                     <td>Total </td>
-                    <td> </td>
-                    <td> </td>
+                    <td>{{mostrar[3][0]}} </td>
+                    <td>{{mostrar[3][1]}} </td>
                   </tr>
                 </tbody>
 
@@ -133,8 +135,6 @@
     <footer class="text-center">
       <h5>&#169; 2&#216;16 | All Rights Reserved </h5>
     </footer>
-    <script src = "pro-congress-115-senate.js"></script>
-    <script src = "Factory.js"></script>
-  
+    <script src="app2.js"></script>
     </body>
     </html>
