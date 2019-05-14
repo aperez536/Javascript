@@ -73,16 +73,17 @@
 
     <section>
           <h2>Attendance</h2>
+          <div id="app2">
+            {{mostrarEstadistica}}
           <div class="container-fluid  ">
             <div class="row">
               <div class=" ml-1 " style="width: 50%;"> The Constitution specifies that a majority of members constitutes a quorum to do business in each house. Representatives and senators rarely force the presence of a quorum by demanding quorum calls; thus, in most cases, debates continue even if a majority is not present.
                 The Senate uses roll-call votes; a clerk calls out the names of all the senators, each senator stating "aye" or "no" when his or her name is announced. The House reserves roll-call votes for the most formal matters, as a roll-call of all 435 representatives takes quite some time; normally, members vote by electronic device. In the case of a tie, the motion in question fails. In the Senate, the Vice President may (if present) cast the tiebreaking vote.</p>
                 <br>
               </div>
-            <div class="row-sm position-relative" style="top:-40px";>
-              <h3>Senate at a glance </h3>
-            <div id="app2">
-              <table class="table">
+              <div class="row-sm position-relative" style="top:-40px" >
+                <h3>Senate at a glance </h3>
+                <table class="table">
                   <thead class="thead-dark">
                     <tr>
                       <th>Party</th>
@@ -90,47 +91,77 @@
                       <th>% voted w/ Party</th>
                     </tr>
                   </thead>
-                <tbody>
-                  <tr>
-                    <td> Democrats</td>
-                    <td>{{mostrar[0][0]}} </td>
-                    <td>{{mostrar[0][1]}} </td>
-                  </tr>
-                  <tr>
-                    <td> Republicans</td>
-                    <td>{{mostrar[1][0]}} </td>
-                    <td>{{mostrar[1][1]}} </td>
-                  </tr>
-                  <tr>
-                    <td>Independents </td>
-                    <td>{{mostrar[2][0]}} </td>
-                    <td>{{mostrar[2][1]}} </td>
-                  </tr>
-                  <tr>
-                    <td>Total </td>
-                    <td>{{mostrar[3][0]}} </td>
-                    <td>{{mostrar[3][1]}} </td>
-                  </tr>
-                </tbody>
+                  <tbody>
+                    <tr>
+                      <td> Democrats</td>
+                      <td v-for="(value,index) in mostrar" v-if="index>=0 && index<=1">{{value}} </td>
+                    </tr>
+                    <tr>
+                      <td> Republicans</td>
+                      <td v-for="(value,index) in mostrar" v-if="index>=2 && index<=3">{{value}} </td>
+                    </tr>
+                    <tr>
+                      <td>Independents </td>
+                      <td v-for="(value,index) in mostrar" v-if="index>=4 && index<=5">{{value}} </td>
+                    </tr>
+                    <tr>
+                      <td>Total </td>
+                      <td v-for="(value,index) in mostrar" v-if="index>=6 && index<=7">{{value}} </td>
+                    </tr>
+                  </tbody>
 
-              </table>
-            </div>
+                </table>
             </div>
           </div>
           </div>
           <hr>
-          <div class="container-fluid">
-            <div class = "row  d-inline-block">
-              <h3 >Least Engaged(bottom 10% attendance) </h3>
-              <table style="width: 100%;" id="Table2"class="table table-bordered table-striped h-0"></table>
+          {{procedimientosDeCalculo}}
+            <div class="container-fluid">
+              <div class="row  d-inline-block">
+                <h3>Least Engaged(bottom 10% attendance) </h3>
+                <table class="table">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th>name</th>
+                      <th>No.missed voted</th>
+                      <th>% voted w/ Party</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="engagedleast in lEngagedLeast ">
+                      <td> <a :href='engagedleast.url'> {{engagedleast.fullname}}</a> </td>>
+                      <td>{{engagedleast.missed_vote}}</td>
+                      <td>{{engagedleast.missed_votes_pct}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+              </div>
+              <div class="row d-inline ml-5">
+
+              <div class="row d-inline-block ml-5">
+                <h3 class=" position-relative">Most Engaged(top 10% attendance) </h3>
+
+                <table class="table">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th>name</th>
+                      <th>No.missed voted</th>
+                      <th>% voted w/ Party</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="engagedMost in lEngagedMost ">
+                      <td> <a :href='engagedMost.url'> {{engagedMost.fullname}}</a> </td>
+                      <td> {{engagedMost.missed_vote}}</td>
+                      <td> {{engagedMost.missed_votes_pct}} </td>
+                    </tr>
+                  </tbody>
+                </table>
+                </div>
+              </div>
             </div>
-            <div class = "row d-inline ml-5">
-            </div>
-            <div class = "row d-inline-block ml-5">
-              <h3 class=" position-relative" >Most Engaged(top 10% attendance) </h3>
-              <table style="width: 100%;" id="Table3"class="table table-bordered table-striped  h-0"></table>
           </div>
-        </div>
     </section>
     <footer class="text-center">
       <h5>&#169; 2&#216;16 | All Rights Reserved </h5>

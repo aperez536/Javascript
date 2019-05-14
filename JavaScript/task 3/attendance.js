@@ -7,12 +7,16 @@
 }
 var pathname = window.location.pathname;
 var dato;
-if(pathname =='/attendance-senate.html'){
-  dato = JSON.parse(JSON.stringify(senate));
-}
-else if(pathname =='/attendance-house.html'){
- dato = JSON.parse(JSON.stringify(house));
-}
+if(pathname.includes('attendance-senate.html')){
+
+       dato = JSON.parse(JSON.stringify(senate));
+	}
+      else if(pathname.includes('attendance-house.html')){
+       
+        dato = JSON.parse(JSON.stringify(house));
+	console.log(dato)
+	}
+else{}
 function mostrarEstadisticaGenera(){
   var rep = new stadistics();
   var dem = new stadistics();

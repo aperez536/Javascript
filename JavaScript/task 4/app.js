@@ -1,6 +1,6 @@
 /**
  * @Date:   2019-04-28T16:03:36-03:00
- * @Last modified time: 2019-05-08T20:15:03-03:00
+ * @Last modified time: 2019-05-11T21:27:13-03:00
  */
 var app = new Vue({
   el: '#app1',
@@ -19,6 +19,7 @@ var app = new Vue({
       fetch(this.url, {
         method: 'GET',
         headers: new Headers({
+        //  header('content-type: application/json; charset=utf-8');
           'X-API-Key': this.pw
         })
       }).then(response => response.json())
@@ -52,7 +53,7 @@ var app = new Vue({
        }
 
    },
-  
+
   },
 
     created() {

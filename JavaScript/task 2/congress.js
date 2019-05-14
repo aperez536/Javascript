@@ -4,12 +4,14 @@
  */
 var pathname = window.location.pathname;
 var dato;
-if(pathname =='/senate.html'){
-  dato = JSON.parse(JSON.stringify(senate));
-}
-else if(pathname =='/house.html'){
- dato = JSON.parse(JSON.stringify(house));
-}
+      if(pathname.includes('senate.html')){
+	dato = JSON.parse(JSON.stringify(senate));
+	}
+      else if(pathname.includes('house.html')){
+        dato = JSON.parse(JSON.stringify(house));
+	console.log(dato)
+	}
+else{}
    var arraytotal = [];
    var resultado = document.getElementById("datos_del_senado");
    var nombreCompleto;

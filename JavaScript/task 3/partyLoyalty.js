@@ -10,12 +10,16 @@
 var pathname = window.location.pathname;
 
 var dato;
-if(pathname =='/partyLoyaltySenate.html'){
-  dato = JSON.parse(JSON.stringify(senate));
-}
-else if(pathname =='/partyLoyaltyHouse.html'){
- dato = JSON.parse(JSON.stringify(house));
-}
+if(pathname.includes('partyLoyaltySenate.html')){
+
+       dato = JSON.parse(JSON.stringify(senate));
+	}
+      else if(pathname.includes('partyLoyaltyHouse.html')){
+       
+        dato = JSON.parse(JSON.stringify(house));
+	console.log(dato)
+	}
+else{}
 function mostrarEstadisticaGenera(){
   var rep = new stadistics();
   var dem = new stadistics();

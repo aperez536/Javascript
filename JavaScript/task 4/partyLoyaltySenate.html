@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   </head>
   <body style="font-family:Comic Sans MS;">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -69,6 +70,8 @@
     </nav>
 
     <section>
+      <div id="app2">
+        {{mostrarEstadistica}}
           <h2>Party Loyalty</h2>
           <div class="container-fluid  ">
             <div class="row">
@@ -76,33 +79,93 @@
 
                 <br>
               </div>
-            <div class="row-sm position-relative" style="top:-40px";>
-              <h3>Senate at a glance </h3>
-              <table id="Table1"class="table table-bordered table-striped  h-0">  </table>
+              <div class="row-sm position-relative" style="top:-40px" >
+                <h3>Senate at a glance </h3>
+                <table class="table">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th>Party</th>
+                      <th>No.of Reps</th>
+                      <th>% voted w/ Party</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td> Democrats</td>
+                      <td v-for="(value,index) in mostrar" v-if="index>=0 && index<=1">{{value}} </td>
+                    </tr>
+                    <tr>
+                      <td> Republicans</td>
+                      <td v-for="(value,index) in mostrar" v-if="index>=2 && index<=3">{{value}} </td>
+                    </tr>
+                    <tr>
+                      <td>Independents </td>
+                      <td v-for="(value,index) in mostrar" v-if="index>=4 && index<=5">{{value}} </td>
+                    </tr>
+                    <tr>
+                      <td>Total </td>
+                      <td v-for="(value,index) in mostrar" v-if="index>=6 && index<=7">{{value}} </td>
+                    </tr>
+                  </tbody>
+
+                </table>
             </div>
           </div>
           </div>
           <hr>
-          <div class="container-fluid">
-            <div class = "row  d-inline-block">
-              <h3 >Least Engaged(bottom 10% attendance) </h3>
-              <table style="width: 100%;" id="Table2"class="table table-bordered table-striped h-0"></table>
-            </div>
-            <div class = "row d-inline ml-5">
-            </div>
-            <div class = "row d-inline-block ml-5">
-              <h3 class=" position-relative" >Most Engaged(top 10% attendance) </h3>
-              <table style="width: 100%;" id="Table3"class="table table-bordered table-striped  h-0"></table>
-          </div>
-        </div>
-    </section>
-    <footer class="text-center">
-      <h5>&#169; 2&#216;16 | All Rights Reserved </h5>
-    </footer>
-    <script src = "pro-congress-115-senate.js"></script>
+          {{procedimientosDeCalculo}}
+            <div class="container-fluid">
+              <div class="row  d-inline-block">
+                <h3>Least Engaged(bottom 10% attendance) </h3>
+                <table class="table">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th>name</th>
+                      <th>No. Party votes</th>
+                      <th>% Party votes</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="loyal in loyalL ">
+                      <td> <a :href='loyal.url'> {{loyal.fullname}}</a> </td>>
+                      <td>{{loyal.total_votes}}</td>
+                      <td>{{loyal.votes_with_party_pct}}</td>
+                    </tr>
+                  </tbody>
+                </table>
 
-    <script src = "Factory.js"></script>
-    <script src = "partyLoyalty.js"></script>
-    <script src = "loyal.js"></script>
+              </div>
+              <div class="row d-inline ml-5">
+
+              <div class="row d-inline-block ml-5">
+                <h3 class=" position-relative">Most Engaged(top 10% attendance) </h3>
+
+                <table class="table">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th>name</th>
+                      <th>No. Party votes</th>
+                      <th>% Party votes</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="loyal in loyalM ">
+                      <td> <a :href='loyal.url'> {{loyal.fullname}}</a> </td>
+                      <td> {{loyal.total_votes}}</td>
+                      <td> {{loyal.votes_with_party_pct}} </td>
+                    </tr>
+                  </tbody>
+                </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+      </section>
+      <footer class="text-center">
+        <h5>&#169; 2&#216;16 | All Rights Reserved </h5>
+      </footer>
+    <script src="app2.js"></script>
+
     </body>
     </html>

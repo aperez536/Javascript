@@ -7,10 +7,10 @@
 
 var pathname = window.location.pathname;
 var dato;
-if(pathname =='/attendance-senate.html'){
+if(this.pathname('attendance-senate.html')){
   dato = JSON.parse(JSON.stringify(senate));
 }
-else if(pathname =='/attendance-house.html'){
+if(this.pathname('attendance-house.html')){
  dato = JSON.parse(JSON.stringify(house));
 }
 console.log(dato.length);

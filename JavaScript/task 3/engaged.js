@@ -4,12 +4,16 @@
  */
 var pathname = window.location.pathname;
 var dato;
-if(pathname =='/attendance-senate.html'){
-  dato = JSON.parse(JSON.stringify(senate));
-}
-else if(pathname =='/attendance-house.html'){
- dato = JSON.parse(JSON.stringify(house));
-}
+if(pathname.includes('attendance-senate.html')){
+
+       dato = JSON.parse(JSON.stringify(senate));
+	}
+      else if(pathname.includes('attendance-house.html')){
+       
+        dato = JSON.parse(JSON.stringify(house));
+	console.log(dato)
+	}
+else{}
 function DatostotalLeas(totalLeast,comparaNumero){
     var estadistica = new stadistics;
     $("#Table2").append('<tr><th>Name</th>'+
@@ -41,10 +45,6 @@ function leastEngage() {
   var aux;
   var i=0;
   //Calculo del percentil
-  while(Number.isInteger(total) == false){
-    total = ((dato.length + i )* 10)/100 ;
-    i++;
-    }
   //
 
 
@@ -72,8 +72,12 @@ function leastEngage() {
         }
       }
       //
+	while(Number.isInteger(total) == false){
+  	  total = ((dato.length + i )* 10)/100 ;
+   	 i++;
+   	 }
       comparaNumero = totalLeast[total].missed_votes_pct;
-
+	
       DatostotalLeas(totalLeast,comparaNumero);
 
 }

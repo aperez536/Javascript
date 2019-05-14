@@ -1,15 +1,15 @@
 var pathname = window.location.pathname;
 var dato;
-if(pathname =='partyLoyalty-senate.html'){
-  dato =  JSON.parse(JSON.stringify(senate));
-}
-else if(pathname =='partyLoyalty-house.html'){
- dato =  JSON.parse(JSON.stringify(house));
+if(pathname.includes('partyLoyaltySenate.html')){
 
-}
-else{
-}
-
+       dato = JSON.parse(JSON.stringify(senate));
+	}
+      else if(pathname.includes('partyLoyaltyHouse.html')){
+       
+        dato = JSON.parse(JSON.stringify(house));
+	console.log(dato)
+	}
+else{}
 function DatostotalLoyal(totalLeast,comparaNumero){
     var estadistica = new stadistics;
     $("#Table2").append('<tr><th>Name</th>'+
@@ -41,10 +41,7 @@ function Loyal() {
   var aux;
   var i=0;
   //Calculo del percentil
-  while(Number.isInteger(total) == false){
-    total = ((dato.length + i )* 10)/100 ;
-    i++;
-    }
+  
   //
     for(i = 0 ; i< dato.length; i++){
           var objecto = new Object();
@@ -73,7 +70,10 @@ function Loyal() {
         }
       }
       //
-
+	while(Number.isInteger(total) == false){
+   	 total = ((dato.length + i )* 10)/100 ;
+   	 i++;
+  	  }
      comparaNumero = totalLeast[total].votes_with_party_pct;
 
       DatostotalLoyal(totalLeast,comparaNumero);
