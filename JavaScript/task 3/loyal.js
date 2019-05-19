@@ -1,3 +1,10 @@
+/**
+ * @Date:   2019-05-18T23:19:49-03:00
+ * @Last modified time: 2019-05-19T00:20:33-03:00
+ */
+
+
+
 var pathname = window.location.pathname;
 var dato;
 if(pathname.includes('partyLoyaltySenate.html')){
@@ -5,12 +12,13 @@ if(pathname.includes('partyLoyaltySenate.html')){
        dato = JSON.parse(JSON.stringify(senate));
 	}
       else if(pathname.includes('partyLoyaltyHouse.html')){
-       
+
         dato = JSON.parse(JSON.stringify(house));
 	console.log(dato)
 	}
 else{}
-function DatostotalLoyal(totalLeast,comparaNumero){
+function DatostotalLoyal(totalLeast,comparaNumero,total){
+    var comparaNumero2 = totalLeast[totalLeast.length - total].votes_with_party_pct;
     var estadistica = new stadistics;
     $("#Table2").append('<tr><th>Name</th>'+
     '<th>No. Party votes</th>'+'<th>% Party votes</th></tr>');
@@ -27,7 +35,7 @@ function DatostotalLoyal(totalLeast,comparaNumero){
          '<td>'+lEngaged.getTotalVotes()+'</td>'+
          '<td>'+lEngaged.getVotedwParty() +'</td>'+'</tr>');
      }
-     else{
+     else if(totalLeast[i].votes_with_party_pct >= comparaNumero2 ){
        $("#Table3").append('<tr>'+'<td>'+'<a href='+ lEngaged.getUrl()+'>' +lEngaged.getName() +'</a>'+'</td>'+
        '<td>'+lEngaged.getTotalVotes()+'</td>'+
        '<td>'+lEngaged.getVotedwParty() +'</td>'+'</tr>');
@@ -41,7 +49,7 @@ function Loyal() {
   var aux;
   var i=0;
   //Calculo del percentil
-  
+
   //
     for(i = 0 ; i< dato.length; i++){
           var objecto = new Object();
@@ -70,13 +78,15 @@ function Loyal() {
         }
       }
       //
+        i = 0;
 	while(Number.isInteger(total) == false){
    	 total = ((dato.length + i )* 10)/100 ;
    	 i++;
   	  }
+      console.log(total)
      comparaNumero = totalLeast[total].votes_with_party_pct;
 
-      DatostotalLoyal(totalLeast,comparaNumero);
+      DatostotalLoyal(totalLeast,comparaNumero,total);
 
 }
 Loyal();

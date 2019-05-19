@@ -58,6 +58,9 @@ function mostrarEstadisticaGenera(){
     republicano.setVotedwParty(NaN2Zero(republicano.getVotedwParty())) ;
     independente.setVotedwParty(NaN2Zero(independente.getVotedwParty())) ;
     totalsuma = ( (democratico.getVotedwParty() + republicano.getVotedwParty() + independente.getVotedwParty() )/3);
+    if(independente.getVotedwParty() == 0){
+	totalsuma = ( (democratico.getVotedwParty() + republicano.getVotedwParty() + independente.getVotedwParty() )/2);
+    }
     totalcantidad = republicano.getNreps() + democratico.getNreps() + independente.getNreps();
     $("#Table1").append('<tr><th>Party</th>'+
     '<th>No. of Reps</th>'+'<th>% votes w/ parte</th></tr>'+

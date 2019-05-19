@@ -49,20 +49,20 @@ var app2 = new Vue({
     cargaPag: function(){
       if(this.pathname.includes('attendance-senate.html')){
 
-        this.url="https://api.propublica.org/congress/v1/115/senate/members.json";
+        this.url="https://api.propublica.org/congress/v1/113/senate/members.json";
        }
       else if(this.pathname.includes('attendance-house.html')){
 
-        this.url = "https://api.propublica.org/congress/v1/115/house/members.json";
+        this.url = "https://api.propublica.org/congress/v1/113/house/members.json";
 
     }
     else if(this.pathname.includes('partyLoyaltyHouse.html')){
 
-      this.url = "https://api.propublica.org/congress/v1/115/house/members.json";
+      this.url = "https://api.propublica.org/congress/v1/113/house/members.json";
 
   }
   else if(this.pathname.includes('partyLoyaltySenate.html')){
-    this.url = "https://api.propublica.org/congress/v1/115/senate/members.json";
+    this.url = "https://api.propublica.org/congress/v1/113/senate/members.json";
 
   }
     },
@@ -103,6 +103,10 @@ var app2 = new Vue({
          this.tipo[1].votes_with_party_pct = this.NaN2Zero(  this.tipo[1].votes_with_party_pct )
          this.tipo[2].votes_with_party_pct = this.NaN2Zero(  this.tipo[2].votes_with_party_pct )
          totalsuma = ( ( this.tipo[0].votes_with_party_pct +  this.tipo[1].votes_with_party_pct +  this.tipo[2].votes_with_party_pct )/3)
+	 if( this.tipo[0].votes_with_party_pct == 0 ||  this.tipo[1].votes_with_party_pct == 0 ||  this.tipo[2].votes_with_party_pct==0)
+	 {
+	   totalsuma=  ( this.tipo[0].votes_with_party_pct +  this.tipo[1].votes_with_party_pct +  this.tipo[2].votes_with_party_pct )/2;
+	 }			
          totalcantidad = this.tipo[0].Cantidad + this.tipo[1].Cantidad + this.tipo[2].Cantidad
 
          this.mostrar[0] = this.tipo[0].Cantidad;
@@ -115,16 +119,18 @@ var app2 = new Vue({
          this.mostrar[7] = totalsuma.toFixed(2)
        },
        procedimientosDeCalculo: function(){
-         console.log("entre aca");
          var comparaNumero
          var comparaNumero2
+         var compara3;
+         var compara4;
          var total
          var nombre
-         var aux
          var i=0
          //Calculo del percentil
                for(i = 0 ; i< this.senateData.length; i++){
                   var obj = {};
+                  if(this.senateData[i].votes_with_party_pct != undefined ||  this.senateData[i].missed_votes_pct !=undefined )
+                  {
                   if(this.senateData[i].middle_name != null){
                       nombre =this.senateData[i].last_name+ " "+this.senateData[i].middle_name+" "+this.senateData[i].first_name
                   }
@@ -139,61 +145,54 @@ var app2 = new Vue({
                    obj["url"] = this.senateData[i].url
                    obj["votes"]= this.senateData[i].total_votes
                    this.lEngaged.push(obj)
+                }
 
-            }
+            } 
+              console.log(this.lEngaged);
               //ordeno la lista con el porcentaje
               if(this.pathname.includes('attendance-senate.html') ||this.pathname.includes('attendance-house.html'))
               {
                 
                 console.log("estoy en el attendance");
-              for(i = 0 ; i < this.lEngaged.length ; i++){
-                for(var j = 0; j < this.lEngaged.length -1 ; j++){
-                  if(this.lEngaged[j].missed_votes_pct > this.lEngaged[j+1].missed_votes_pct){
-                    aux = this.lEngaged[j];
-                    this.lEngaged[j] =   this.lEngaged[j + 1];
-                    this.lEngaged[j +1] = aux;
-                  }
-                }
-              }
+              this.lEngaged.sort(function (a,b){
+                return a.missed_votes_pct - b.missed_votes_pct;
+              })
 
             }
             if(this.pathname.includes('partyLoyaltyHouse.html') || this.pathname.includes('partyLoyaltySenate.html')){
               console.log("estoy en el Loyalty");
-              for(i = 0 ; i < this.lEngaged.length ; i++){
-                for(var j = 0; j < this.lEngaged.length - 1   ; j++){
-                  if(this.lEngaged[j].votes_with_party_pct > this.lEngaged[j+1].votes_with_party_pct){
-                    aux = this.lEngaged[j];
-                    this.lEngaged[j] =   this.lEngaged[j + 1];
-                    this.lEngaged[j +1] = aux;
-                  }
-                }
-              }
+              this.lEngaged.sort(function (a,b){
+                return a.votes_with_party_pct - b.votes_with_party_pct;
+              })
 
 
             }
 
             while(Number.isInteger(total) == false){
-              total = ((this.senateData.length + i )* 10)/100
+              total = ((this.senateData.length *10 ) + i)/100;
               i++;
               }
             comparaNumero2 = this.lEngaged[total].votes_with_party_pct
+            compara4 = this.lEngaged[this.lEngaged.length-total].votes_with_party_pct
             comparaNumero = this.lEngaged[total].missed_votes_pct
-            console.log(comparaNumero);
-            console.log(comparaNumero2);
+            compara3 = this.lEngaged[this.lEngaged.length-total].missed_votes_pct
+        
              for( i = 0 ; i< this.lEngaged.length;i++){
               if(this.lEngaged[i].missed_votes_pct <= comparaNumero){
                 this.lEngagedLeast.push(this.lEngaged[i])
               }
-              else{
+              else if(this.lEngaged[i].missed_votes_pct >= compara3) {
                 this.lEngagedMost.push(this.lEngaged[i])
               }
+              else{}
               if(this.lEngaged[i].votes_with_party_pct <= comparaNumero2){
                   this.loyalL.push(this.lEngaged[i])
                 }
-              else{
+              else if(this.lEngaged[i].votes_with_party_pct >= compara4){
 
                   this.loyalM.push(this.lEngaged[i])
                }
+               else{}
            }
     },
   },
