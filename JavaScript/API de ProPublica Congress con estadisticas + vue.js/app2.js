@@ -1,6 +1,6 @@
 /**
  * @Date:   2019-04-28T16:03:36-03:00
- * @Last modified time: 2019-05-14T15:31:29-03:00
+ * @Last modified time: 2019-05-22T18:15:25-03:00
  */
 var app2 = new Vue({
   el: '#app2',
@@ -106,7 +106,7 @@ var app2 = new Vue({
 	 if( this.tipo[0].votes_with_party_pct == 0 ||  this.tipo[1].votes_with_party_pct == 0 ||  this.tipo[2].votes_with_party_pct==0)
 	 {
 	   totalsuma=  ( this.tipo[0].votes_with_party_pct +  this.tipo[1].votes_with_party_pct +  this.tipo[2].votes_with_party_pct )/2;
-	 }			
+	 }
          totalcantidad = this.tipo[0].Cantidad + this.tipo[1].Cantidad + this.tipo[2].Cantidad
 
          this.mostrar[0] = this.tipo[0].Cantidad;
@@ -147,12 +147,12 @@ var app2 = new Vue({
                    this.lEngaged.push(obj)
                 }
 
-            } 
+            }
               console.log(this.lEngaged);
               //ordeno la lista con el porcentaje
               if(this.pathname.includes('attendance-senate.html') ||this.pathname.includes('attendance-house.html'))
               {
-                
+
                 console.log("estoy en el attendance");
               this.lEngaged.sort(function (a,b){
                 return a.missed_votes_pct - b.missed_votes_pct;
@@ -167,16 +167,16 @@ var app2 = new Vue({
 
 
             }
-
+            i = 0;
             while(Number.isInteger(total) == false){
-              total = ((this.senateData.length *10 ) + i)/100;
+              total = ((this.senateData.length + i ) * 10)/100;
               i++;
               }
-            comparaNumero2 = this.lEngaged[total].votes_with_party_pct
+            comparaNumero2 = this.lEngaged[total-1].votes_with_party_pct
             compara4 = this.lEngaged[this.lEngaged.length-total].votes_with_party_pct
-            comparaNumero = this.lEngaged[total].missed_votes_pct
+            comparaNumero = this.lEngaged[total-1].missed_votes_pct
             compara3 = this.lEngaged[this.lEngaged.length-total].missed_votes_pct
-        
+
              for( i = 0 ; i< this.lEngaged.length;i++){
               if(this.lEngaged[i].missed_votes_pct <= comparaNumero){
                 this.lEngagedLeast.push(this.lEngaged[i])
