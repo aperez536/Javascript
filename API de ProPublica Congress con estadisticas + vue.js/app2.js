@@ -1,6 +1,6 @@
 /**
  * @Date:   2019-04-28T16:03:36-03:00
- * @Last modified time: 2019-05-22T18:15:25-03:00
+ * @Last modified time: 2019-05-24T17:23:46-03:00
  */
 var app2 = new Vue({
   el: '#app2',
@@ -177,22 +177,15 @@ var app2 = new Vue({
             comparaNumero = this.lEngaged[total-1].missed_votes_pct
             compara3 = this.lEngaged[this.lEngaged.length-total].missed_votes_pct
 
-             for( i = 0 ; i< this.lEngaged.length;i++){
-              if(this.lEngaged[i].missed_votes_pct <= comparaNumero){
+             for( i = 0 ; i< total -1;i++){
                 this.lEngagedLeast.push(this.lEngaged[i])
-              }
-              else if(this.lEngaged[i].missed_votes_pct >= compara3) {
-                this.lEngagedMost.push(this.lEngaged[i])
-              }
-              else{}
-              if(this.lEngaged[i].votes_with_party_pct <= comparaNumero2){
-                  this.loyalL.push(this.lEngaged[i])
-                }
-              else if(this.lEngaged[i].votes_with_party_pct >= compara4){
+                this.loyalL.push(this.lEngaged[i])
 
-                  this.loyalM.push(this.lEngaged[i])
-               }
-               else{}
+            }
+             for( i = this.lEngaged.length - total; i< this.lEngaged.length ;i++){
+               console.log("i vale " + i);
+               this.lEngagedMost.push(this.lEngaged[i])
+               this.loyalM.push(this.lEngaged[i])
            }
     },
   },
