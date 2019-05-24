@@ -1,6 +1,6 @@
 /**
  * @Date:   2019-04-28T16:03:36-03:00
- * @Last modified time: 2019-05-24T17:24:54-03:00
+ * @Last modified time: 2019-05-24T17:25:27-03:00
  */
 var app2 = new Vue({
   el: '#app2',
@@ -148,7 +148,7 @@ var app2 = new Vue({
                 }
 
             }
-              console.log(this.lEngaged);
+
               //ordeno la lista con el porcentaje
               if(this.pathname.includes('attendance-senate.html') ||this.pathname.includes('attendance-house.html'))
               {
